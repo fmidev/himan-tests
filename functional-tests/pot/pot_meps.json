@@ -1,0 +1,21 @@
+{
+        "source_geom_name" : "MEPSSCAN2500,MEPSSCAN2500G2",
+        "target_geom_name" : "MEPSSCAN2500",
+        "source_producer" : "4,260",
+        "target_producer" : "260",
+        "start_hour" : "3",
+        "stop_hour" : "3",
+        "step" : "1",
+        "step_unit" : "hour",
+        "file_write" : "multiple",
+        "origintime" : "2019-6-13 00:00:00",
+        "read_data_from_database" : "true",
+        "forecast_type" : "cf",
+	"processqueue" : [
+	{
+		"leveltype" : "height",
+		"levels" : "0",
+		"plugins" : [ { "name" : "pot" } ]
+	} 
+	]
+}

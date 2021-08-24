@@ -1,0 +1,33 @@
+{
+	"source_geom_name" : "ECEUR0200",
+	"bbox" : "9.75,53.875,29.25,65.875",
+	"projection" : "latlon",
+        "scanning_mode" : "+x-y",
+	"ni" : "40",
+	"nj" : "49",
+	"source_producer" : "134",
+	"target_producer" : "243",
+	"start_hour" : "6",
+	"stop_hour" : "6",
+	"step" : "6",
+	"origintime" : "2020-04-28 00:00:00",
+	"file_write" : "single",
+	"read_data_from_database" : false,
+
+	"processqueue" : [
+	{ 
+		"forecast_type" : "cf",
+                "leveltype" : "height",
+                "levels" : "0",
+                "plugins" : [ 
+				{ "name" : "transformer",
+					"source_level_type" : "ground",
+					"source_levels" : "0",
+					"target_param" : "P-PA",
+					"base" : "0", "scale" : 0.01 }
+		 ]
+        }
+
+
+	]
+}

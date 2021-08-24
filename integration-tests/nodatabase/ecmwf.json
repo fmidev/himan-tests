@@ -1,0 +1,22 @@
+{
+	"bbox" : "5,50,35,70",
+	"scanning_mode" : "+x+y",
+	"ni" : "100",
+	"nj" : "200",
+	"source_producer" : "999999",
+	"target_producer" : "999999",
+	"start_hour" : "6",
+	"stop_hour" : "6",
+	"step" : "3",
+	"step_unit" : "hour",
+	"file_write" : "multiple",
+	"origintime" : "2016-12-19 00:00:00",
+	"read_data_from_database" : false,
+	"processqueue" : [
+	{
+		"leveltype" : "ground",
+		"levels" : "0",
+		"plugins" : [ { "name" : "windvector" } ]
+	}
+	]
+}

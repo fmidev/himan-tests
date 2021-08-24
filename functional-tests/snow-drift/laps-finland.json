@@ -1,0 +1,22 @@
+{
+    "target_geom_name" : "LAPS3000",
+    "source_producer" : "107",
+    "target_producer" : "107",
+    "forecast_type" : "analysis",
+    "start_hour" : "0",
+    "stop_hour" : "0",
+    "step" : "1",
+    "origintime" : "2019-03-06 12:00:00",
+    "file_write" : "multiple",
+    "read_data_from_database" : false,
+
+    "processqueue" : [
+    {
+	"leveltype" : "height",
+	"levels" : "0",
+	"plugins" : [ 
+		{ "name" : "snow_drift" }
+ 	]
+    }
+]
+}

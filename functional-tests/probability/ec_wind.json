@@ -1,0 +1,35 @@
+{
+    "source_geom_name" : "ECEUR0200",
+    "target_geom_name" : "ECEUR0200",
+    "source_producer" : "134,242",
+    "target_producer" : "242",
+    "start_hour" : "6",
+    "stop_hour" : "6",
+    "step" : "6",
+    "origintime" : "2016-11-08 00:00:00",
+    "read_data_from_database" : "false",
+    "file_write" : "single",
+    "file_type" : "grib1",
+    "use_cache" : "true",
+    "processqueue" : [
+        {
+		"forecast_type" : "cf,pf1-50",
+	 	"file_write" : "cache only",
+	 	"leveltype" : "ground",
+	 	"levels" : "0",
+	 	"plugins" : [ { "name" : "windvector"}
+					  ]
+	},
+        {
+            "leveltype" : "ground",
+            "levels" : "0",
+            "plugins" : [ { "name" : "probability", "ensemble_size" : 51, "normalized_results" : false,
+                            "param_list" :  [
+								{ "name" : "PROB-W-1", "input_param1" : "FF-MS",
+								  "threshold" : 11.0 }
+							]
+						  }
+						]
+		}
+	]
+}

@@ -1,0 +1,14 @@
+cnt=$(echo "SELECT count(*) FROM grid_hl2_v WHERE analysis_time = '2021-04-29 06:00:00' AND param_name = 'T-K'" | psql -Aqt)
+
+if [ $cnt -ne 2 ]; then
+  echo "failed"
+  exit 1
+fi
+
+str=$(echo "SELECT sum(message_no) FROM grid_hl2_v" | psql -Aqt)
+
+if [ $str -ne 3 ]; then
+  echo "failed"
+  exit 1
+fi
+

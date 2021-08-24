@@ -1,0 +1,31 @@
+{
+	"stations" : "134254,134248",
+    "source_producer" : "2167",
+    "target_producer" : "2168",
+    "start_hour" : "3",
+    "stop_hour" : "3",
+    "step" : "6",
+    "origintime" : "2017-05-19 00:00:00",
+    "read_data_from_database" : "false",
+    "file_write" : "single",
+    "file_type" : "querydata",
+
+    "processqueue" : [
+        {
+            "leveltype" : "ground",
+            "levels" : "0",
+            "plugins" : [ { "name" : "probability",
+							"ensemble_size" : 51,
+							"normalized_results" : false,
+                            "param_list" :  [ 
+							{ "name" : "PROB-WATLEV-LOW-1", "input_param1" : "WATLEV-CM", "threshold_134254" : "-70", "threshold_134248" : "-80", "comparison" : "<" },
+							{ "name" : "PROB-WATLEV-HIGH-1", "input_param1" : "WATLEV-CM", "threshold_134254" : "115", "threshold_134248" : "110" },
+							{ "name" : "PROB-WATLEV-HIGH-2", "input_param1" : "WATLEV-CM" },
+							{ "name" : "PROB-WATLEV-HIGH-3", "input_param1" : "WATLEV-CM" }
+
+					]
+				  }
+			]
+		}
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"target_geom_name" : "MOSKRIGING2",
+	"source_producer" : "120",
+	"target_producer" : "120",
+	"start_hour" : "4",
+	"stop_hour" : "4",
+	"step" : "1",
+	"origintime" : "2019-04-06 00:00:00",
+	"read_data_from_database" : "true",
+	"file_write" : "multiple",
+
+	"processqueue" : [
+		{
+			"leveltype" : "height",
+			"levels" : "0",
+			"plugins" : [
+				{ "name" : "transformer", "source_param" : "T-C", "target_param" : "T-C", "time_interpolation" : true }
+			]
+		}
+	]
+}

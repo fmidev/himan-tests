@@ -1,0 +1,23 @@
+{
+	"target_geom_name" : "MEPSSCAN2500",
+	"source_producer" : "4,260",
+	"target_producer" : "260",
+	"start_hour" : "3",
+	"stop_hour" : "3",
+	"step" : "3",
+	"file_write" : "multiple",
+	"origintime" : "2018-03-25 06:00:00",
+	"read_data_from_database" : false,
+	"forecast_type" : "cf",
+
+	"processqueue" : [
+	{
+		"leveltype" : "height",
+		"levels" : "0",
+		"plugins" : [ 
+				{ "name" : "preform_hybrid" }
+			]
+	}
+	]
+}
+

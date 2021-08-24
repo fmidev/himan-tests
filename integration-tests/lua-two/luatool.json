@@ -1,0 +1,25 @@
+{
+	"source_geom_name" : "RCR068",
+	"target_geom_name" : "RCR068",
+	"source_producer" : "1,230",
+	"target_producer" : "230",
+	"forecast_type" : "deterministic",
+	"start_hour" : "3",
+	"stop_hour" : "3",
+	"step" : "1",
+	"file_write" : "multiple",
+	"origintime" : "2017-09-11 12:00:00",
+	"read_data_from_database" : false,
+	"use_cache" : false,
+
+	"processqueue" : [
+        {
+                "leveltype" : "ground",
+                "levels" : "0",
+                "plugins" : [ { "name" : "luatool", "luafile" : [ "1.lua", "2.lua"
+
+		] } ]
+        }
+	]
+}
+

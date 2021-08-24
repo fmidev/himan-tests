@@ -1,0 +1,23 @@
+{
+    "target_geom_name" : "MEPSSCAN2500",
+    "source_producer" : "4,260",
+    "target_producer" : "260",
+    "forecast_type" : "cf",
+    "start_hour" : "1",
+    "stop_hour" : "1",
+    "step" : "1",
+    "origintime" : "2019-02-14 00:00:00",
+    "read_data_from_database" : false,
+    "file_write" : "multiple",
+
+    "processqueue" : [
+{
+	"leveltype" : "height",
+	"levels" : "0",
+	"plugins" : [ 
+		{ "name" : "snow_drift"
+		}
+	]
+    }
+]
+}

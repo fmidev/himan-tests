@@ -1,0 +1,26 @@
+release=release
+
+if [ $# -eq 1 ]; then
+        release=$1
+else
+  if [ $(echo $HIMAN | grep -oc release) -eq 1 ]; then
+    release=release
+  else
+    release=debug
+  fi
+fi
+
+if [ -z "$HIMAN_LIBRARY_PATH" ]; then
+        export LD_LIBRARY_PATH=/usr/lib64/himan-plugins:$LD_LIBRARY_PATH
+else
+        export LD_LIBRARY_PATH=$HIMAN_LIBRARY_PATH:$LD_LIBRARY_PATH
+fi
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+
+if [ -n "$HIMAN" ]; then
+        base=$(realpath $(dirname $HIMAN)/../../../)
+        export INCLUDEDIR="$base/himan-lib/include;$base/himan-plugins/include;$INCLUDEDIR"
+        export LIBRARYDIR="$base/himan-lib/build/$release;$base/himan-plugins/build/$release;$LIBRARYDIR"
+fi
+

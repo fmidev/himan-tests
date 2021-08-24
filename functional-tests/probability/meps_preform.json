@@ -1,0 +1,26 @@
+{
+    "target_geom_name" : "MEPSSCAN2500",
+    "source_producer" : "260",
+    "target_producer" : "260",
+    "start_hour" : "48",
+    "stop_hour" : "48",
+    "step" : "1",
+    "origintime" : "2017-11-24 06:00:00",
+    "read_data_from_database" : "true",
+    "file_write" : "multiple",
+    "processqueue" : [
+        {
+            "leveltype" : "height",
+            "levels" : "0",
+            "plugins" : [ { "name" : "probability",
+                            "normalized_results" : false,
+                            "max_missing_forecasts" : "6",
+                            "param_list" :  [ 
+					{ "name" : "PROB-RAIN", "input_param" : "PRECFORM2-N",  "threshold" : "1", "comparison" : "=" },
+					{ "name" : "PROB-FRRAIN", "input_param" : "PRECFORM2-N",  "threshold" : "4,5", "comparison" : "=[]" }
+					]
+				  }
+			]
+		}
+	]
+}

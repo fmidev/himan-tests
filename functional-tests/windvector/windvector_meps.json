@@ -1,0 +1,21 @@
+{
+	"target_geom_name" : "MEPSNOFMI2500",
+	"source_producer" : "4",
+	"target_producer" : "260",
+	"start_hour" : "6",
+	"stop_hour" : "6",
+	"step" : "1",
+	"step_unit" : "hour",
+	"file_write" : "multiple",
+	"origintime" : "2016-11-18 00:00:00",
+	"read_data_from_database" : false,
+	"forecast_type" : "pf9",
+
+	"processqueue" : [
+	{
+		"leveltype" : "height",
+		"levels" : "10",
+		"plugins" : [ { "name" : "windvector" } ]
+	} 
+	]
+}

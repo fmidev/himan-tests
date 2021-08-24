@@ -1,0 +1,24 @@
+{
+    "source_geom_name" : "ECEUR0200",
+    "target_geom_name" : "ECEUR0200",
+    "source_producer" : "134,242",
+    "target_producer" : "242",
+    "start_hour" : "6",
+    "stop_hour" : "6",
+    "step" : "6",
+    "origintime" : "2016-10-20 12:00:00",
+    "file_write" : "multiple",
+	"read_data_from_database" : false,
+
+    "processqueue" : [
+        {
+            "leveltype" : "height",
+            "levels" : "2",
+            "plugins" : [ 
+                { "name" : "fractile", "param" : "T-K" } 
+            ]
+        }
+
+    ]
+}
+

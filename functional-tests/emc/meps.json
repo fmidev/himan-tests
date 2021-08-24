@@ -1,0 +1,20 @@
+{
+	"target_geom_name" : "MEPS2500D",
+	"source_producer" : "4",
+	"target_producer" : "260",
+	"forecast_type" : "sp",
+	"start_hour" : "3",
+	"stop_hour" : "3",
+	"step" : "1",
+	"file_write" : "multiple",
+	"origintime" : "2020-03-02 03:00:00",
+        "read_from_database" : false,
+	"processqueue" : [
+        {
+                "leveltype" : "height",
+                "levels" : "2",
+                "plugins" : [ { "name" : "luatool", "luafile" : [ "../../../himan/himan-scripts/emc.lua" ], "ensemble_size" : 15 } ]
+        }
+	]
+}
+

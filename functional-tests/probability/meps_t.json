@@ -1,0 +1,27 @@
+{
+    "target_geom_name" : "MEPSSCAN2500",
+    "source_producer" : "4",
+    "target_producer" : "260",
+    "start_hour" : "32",
+    "stop_hour" : "32",
+    "step" : "1",
+    "origintime" : "2019-10-11 06:00:00",
+    "read_data_from_database" : "false",
+    "file_write" : "multiple",
+    "processqueue" : [
+        {
+            "leveltype" : "height",
+            "levels" : "2",
+            "plugins" : [ { "name" : "probability",
+                            "normalized_results" : true,
+                            "max_missing_forecasts" : "11",
+                            "lag" : -6, "lagged_steps" : 1,
+                            "param_list" :  [ 
+					{ "name" : "PROB-TC-0", "input_param1" : "T-K", "threshold" : 273.15, "comparison" : "<" },
+					{ "name" : "PROB-TC-1", "input_param1" : "T-K", "threshold" : 259.15, "comparison" : "<" }
+					]
+				  }
+			]
+		}
+	]
+}

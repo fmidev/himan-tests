@@ -1,0 +1,30 @@
+{
+    "target_geom_name" : "MEPSSCAN2500",
+    "source_producer" : "4,260",
+    "target_producer" : "260",
+    "start_hour" : "3",
+    "stop_hour" : "3",
+    "step" : "1",
+    "origintime" : "2018-02-09 06:00:00",
+    "file_write" : "multiple",
+    "forecast_type" : "cf",
+    "read_data_from_database" : true,
+
+    "processqueue" : [
+{
+	"file_write" : "cache only",
+        "leveltype" : "hybrid",
+        "levels" : "41-65",
+        "plugins" : [ 
+	    { "name" : "hybrid_height" }
+	]
+    },
+	{
+		"leveltype" : "height",
+		"levels" : "0",
+		"plugins" : [ 
+            { "name" : "cape", "source_data" : [ "500m mix" ], "virtual_temperature" : false }
+           ]
+	}
+    ]
+}

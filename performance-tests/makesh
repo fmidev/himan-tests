@@ -1,0 +1,10 @@
+cd $(dirname $0)
+. $(dirname $0)/envsh
+
+rm -f perf*sh
+make $release
+
+for i in $(find "build/$release" -maxdepth 1 -type f -executable); do
+    echo -e ". $PWD/envsh\n$i --build_info --log_level=test_suite --show_progress" > $(basename $i).sh
+    chmod 755 $(basename $i).sh
+done

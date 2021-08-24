@@ -1,0 +1,19 @@
+{
+    "target_geom_name" : "GFS0250",
+    "source_producer" : "53,250",
+    "target_producer" : "250",
+    "start_hour" : "41",
+    "stop_hour" : "41",
+    "step" : "1",
+    "file_write" : "multiple",
+    "origintime" : "2018-02-16 00:00:00",
+    "read_data_from_database" : false,
+ 
+    "processqueue" : [
+	{
+		"leveltype" : "height",
+		"levels" : "0",
+		"plugins" : [ { "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/gfs-precipitation.lua" ] } ]
+	}
+    ]
+}

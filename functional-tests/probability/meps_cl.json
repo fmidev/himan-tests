@@ -1,0 +1,25 @@
+{
+    "target_geom_name" : "MEPSSCAN2500",
+    "source_producer" : "260",
+    "target_producer" : "260",
+    "start_hour" : "32",
+    "stop_hour" : "32",
+    "step" : "1",
+    "origintime" : "2018-04-23 06:00:00",
+    "read_data_from_database" : "true",
+    "file_write" : "multiple",
+    "processqueue" : [
+        {
+            "leveltype" : "height",
+            "levels" : "0",
+            "plugins" : [ { "name" : "probability",
+                            "normalized_results" : true,
+                            "max_missing_forecasts" : "6",
+                            "param_list" :  [ 
+					{ "name" : "PROB-CEIL-1", "input_param1" : "CEIL-2-M", "threshold" : 2000, "comparison" : "<" }
+					]
+				  }
+			]
+		}
+	]
+}

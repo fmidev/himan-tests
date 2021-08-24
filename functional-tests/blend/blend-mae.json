@@ -1,0 +1,30 @@
+{
+    "target_geom_name": "LAPSLAMBERT2500", 
+    "source_geom_name": "LAPSLAMBERT2500", 
+    "source_producer": "183", 
+    "target_producer": "184", 
+    "start_hour": "0", 
+    "stop_hour": "0", 
+    "step": "1", 
+    "origintime": "2021-05-24 00:00:00", 
+    "read_from_database": false, 
+    "write_mode": "single", 
+		"filename_template" : "blend-mae.{file_type}",
+
+    "processqueue": [
+        {
+            "leveltype": "height", 
+            "levels": "2", 
+            "forecast_type": "pf3", 
+            "plugins": [
+                {
+                    "name": "blend", 
+                    "param": "T-K", 
+                    "mode": "mae", 
+                    "producer": "MEPS", 
+                    "analysis_hour": "2"
+                }
+            ]
+        }
+    ]
+}

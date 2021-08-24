@@ -1,0 +1,21 @@
+{
+	"target_geom_name" : "MEPS2500D",
+	"source_producer" : "260,4",
+	"target_producer" : "260",
+	"forecast_type" : "cf",
+	"start_hour" : "48",
+	"stop_hour" : "48",
+	"step" : "1",
+	"file_write" : "multiple",
+	"origintime" : "2020-02-18 06:00:00",
+        "read_from_database" : false,
+        "forecast_type" : "sp",
+	"processqueue" : [
+        {
+                "leveltype" : "height",
+                "levels" : "0",
+                "plugins" : [ { "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/LVP.lua" ] } ]
+        }
+	]
+}
+

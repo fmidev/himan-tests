@@ -1,0 +1,245 @@
+#
+# SConscript for himan-bin
+
+import os, sys, platform
+
+AddOption(
+    '--debug-build',
+    dest='debug-build',
+    action='store_true',
+    help='debug build',
+    default=False)
+
+env = Environment()
+
+# Check build
+
+DEBUG = GetOption('debug-build')
+RELEASE = (not DEBUG)
+env['OS_VERSION'] = float('.'.join(platform.linux_distribution()[1].split('.')[:2]))
+
+# Workspace
+
+workspace = os.environ['HOME'] + "/himan"
+
+if os.environ['HOME'] == "/home/weto":
+	workspace = os.environ['HOME'] + "/workspace/himan"
+	
+# cuda toolkit path
+
+cuda_toolkit_path = '/usr/local/cuda'
+
+if os.environ.get('CUDA_TOOLKIT_PATH') is None:
+	print("Environment variable CUDA_TOOLKIT_PATH not set, assuming " + cuda_toolkit_path)
+else:
+	cuda_toolkit_path = os.environ['CUDA_TOOLKIT_PATH']
+
+have_cuda = False
+
+if os.path.isfile(cuda_toolkit_path + '/lib64/libcudart.so'):
+	have_cuda = True
+
+# Assign compilers
+
+env['CC'] = 'gcc'
+env['CXX'] = 'g++'
+
+if os.environ.get('CC') != None:
+        env['CC'] = os.environ.get('CC')
+
+if os.environ.get('CXX') != None:
+        env['CXX'] = os.environ.get('CXX')
+
+# Includes
+
+includes = []
+
+if os.environ.get('INCLUDEDIR') != None:
+	includes.append(list(filter(None, os.environ.get('INCLUDEDIR').split(';'))))
+
+includes.append('include')
+includes.append(workspace + '/himan-lib/include')
+includes.append(workspace + '/himan-plugins/include')
+includes.append('/usr/include/smartmet/newbase')
+includes.append('/usr/include/smartmet/smarttools')
+
+if have_cuda:
+	includes.append(cuda_toolkit_path + '/include')
+
+env.Append(CPPPATH = includes)
+
+env.AppendUnique(CCFLAGS=('-isystem', '/usr/include/eigen3'))
+
+# Library paths
+
+librarypaths = []
+
+if os.environ.get('LIBRARYDIR') != None:
+	librarypaths.append(list(filter(None, os.environ.get('LIBRARYDIR').split(';'))))
+
+
+if RELEASE:
+	librarypaths.append(workspace + '/himan-lib/build/release')
+	librarypaths.append(workspace + '/himan-plugins/build/release')
+
+else:
+	librarypaths.append(workspace + '/himan-lib/build/debug')
+	librarypaths.append(workspace + '/himan-plugins/build/debug')
+
+librarypaths.append('/usr/gdal32/lib')
+librarypaths.append('/usr/lib64')
+librarypaths.append('/usr/lib64/boost169')
+librarypaths.append('/usr/lib64/oracle')
+
+if have_cuda:
+	librarypaths.append(cuda_toolkit_path + '/lib64')
+
+env.Append(LIBPATH = librarypaths)
+
+# Libraries
+
+libraries = []
+
+# Do we really need to link all plugins here ?
+libraries.append('himan')
+
+# Library linking order! argh!
+libraries.append('fetcher')
+libraries.append('querydata')
+
+libraries.append('fmidb')
+libraries.append('clntsh')
+libraries.append('odbc')
+libraries.append('pqxx')
+libraries.append('nnz11')
+libraries.append('jasper')
+
+if have_cuda:
+	libraries.append('cudart')
+
+# plugins 
+libraries.append('hitool')
+libraries.append('radon')
+libraries.append('cache')
+
+libraries.append('csv')
+libraries.append('grib')
+libraries.append('geotiff')
+
+libraries.append('smartmet-smarttools')
+libraries.append('smartmet-newbase')
+
+env.Append(LIBS = libraries)
+
+env.Append(LIBS = [ 'boost_filesystem', 'boost_system', 'boost_regex', 'boost_iostreams', 'boost_thread', 'boost_unit_test_framework' , 'boost_date_time'])
+env.Append(LIBS = [ 'gdal', 'z', 'bz2', 'rt', 'fmt' ])
+
+# CFLAGS
+
+# "Normal" flags
+
+cflags_normal = []
+cflags_normal.append('-Wall')
+cflags_normal.append('-W')
+cflags_normal.append('-Wno-unused-parameter')
+cflags_normal.append('-Werror')
+
+# Extra flags
+
+cflags_extra = []
+cflags_extra.append('-Wpointer-arith')
+cflags_extra.append('-Wcast-qual')
+cflags_extra.append('-Wcast-align')
+cflags_extra.append('-Wwrite-strings')
+cflags_extra.append('-Wconversion')
+# cflags_extra.append('-Winline')
+cflags_extra.append('-Wnon-virtual-dtor')
+cflags_extra.append('-Wno-pmf-conversions')
+cflags_extra.append('-Wsign-promo')
+cflags_extra.append('-Wchar-subscripts')
+cflags_extra.append('-Wold-style-cast')
+
+# Difficult flags
+
+cflags_difficult = []
+cflags_difficult.append('-pedantic')
+cflags_difficult.append('-Weffc++')
+cflags_difficult.append('-Wredundant-decls')
+cflags_difficult.append('-Wshadow')
+cflags_difficult.append('-Woverloaded-virtual')
+cflags_difficult.append('-Wunreachable-code')
+cflags_difficult.append('-Wctor-dtor-privacy')
+
+# Default flags (common for release/debug)
+
+cpp_standard = 'c++11'
+
+if env['OS_VERSION'] >= 8:
+    cpp_standard = 'c++17'
+
+cflags = []
+cflags.append('-std='+cpp_standard)
+
+env.Append(CCFLAGS = cflags)
+env.Append(CCFLAGS = cflags_normal)
+
+env.AppendUnique(CCFLAGS=('-isystem', '/usr/include/boost169'))
+env.AppendUnique(CCFLAGS=('-isystem', '/usr/gdal32/include'))
+
+# Linker flags
+
+env.Append(LINKFLAGS = ['-rdynamic','-pthread'])
+
+# '-Wl,-rpath,.'
+
+# Defines
+
+env.Append(CPPDEFINES=['UNIX'])
+
+if have_cuda:
+	env.Append(CPPDEFINES=['HAVE_CUDA'])
+
+# Clean fails without this
+env.Append(NVCCDEFINES = ['HAVE_CUDA'])
+
+env.Append(NVCCFLAGS = ['-std=' + cpp_standard])
+env.Append(NVCCFLAGS = ['-m64'])
+env.Append(NVCCFLAGS = ['-Xcompiler','-fPIC'])
+env.Append(NVCCFLAGS = ['-Xcompiler','-Wall']) # This producers lots of warnings from cuda system libraries
+env.Append(NVCCFLAGS = ['-gencode=arch=compute_52,code=sm_52'])
+env.Append(NVCCFLAGS = ['-gencode=arch=compute_60,code=sm_60'])
+env.Append(NVCCFLAGS = ['--expt-extended-lambda', '--expt-relaxed-constexpr'])
+env.Append(NVCCFLAGS = ['-isystem', '/usr/include/boost169'])
+
+if os.environ.get('INCLUDEDIR') != None:
+        env.Append(NVCCPATH = list(filter(None, os.environ.get('INCLUDEDIR').split(';'))))
+
+env.Append(NVCCPATH = ['./include'])
+env.Append(NVCCPATH = [workspace + '/himan-lib/include']) # cuda-helper
+env.Append(NVCCPATH = ['/usr/gdal32/include'])
+
+# Other
+
+build_dir = ""
+
+if RELEASE:
+	env.Append(CCFLAGS = ['-O2'])
+	env.Append(CPPDEFINES = ['NDEBUG'])
+	env.Append(NVCCFLAGS = ['-O2'])
+	env.Append(NVCCDEFINES = ['NDEBUG'])
+	build_dir = "build/release"
+
+if DEBUG:
+	env.Append(CPPDEFINES = ['DEBUG'])
+	env.Append(CCFLAGS = ['-O0', '-g'])
+	env.Append(CCFLAGS = cflags_extra)
+#	env.Append(CCFLAGS = cflags_difficult)
+
+	# Cuda
+	env.Append(NVCCFLAGS = ['-O0','-g','-G', '-lineinfo'])
+	env.Append(NVCCDEFINES = ['DEBUG'])
+        
+	build_dir = "build/debug"
+
+SConscript('SConscript', exports = ['env'], variant_dir=build_dir, duplicate=0)
+Clean('.', build_dir)

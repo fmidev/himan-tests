@@ -1,0 +1,21 @@
+{
+	"target_geom_name" : "MEPS2500D",
+	"source_producer" : "260",
+	"target_producer" : "260",
+	"start_hour" : "6",
+	"stop_hour" : "6",
+	"step" : "1",
+	"step_unit" : "hour",
+	"write_mode" : "single",
+	"origintime" : "2020-11-06 03:00:00",
+	"read_data_from_database" : false,
+	"forecast_type" : "cf",
+
+	"processqueue" : [
+	{
+		"leveltype" : "height",
+		"levels" : "10",
+		"plugins" : [ { "name" : "windvector", "reverse" : true, "vector" : true } ]
+	} 
+	]
+}

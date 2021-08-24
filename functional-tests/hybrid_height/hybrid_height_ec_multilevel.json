@@ -1,0 +1,22 @@
+{
+	"target_geom_name" : "ECEUR0100G2",
+	"source_producer" : "131,240",
+	"target_producer" : "240",
+	"forecast_type" : "deterministic",
+	"start_hour" : "114",
+	"stop_hour" : "114",
+	"step" : "1",
+	"file_write" : "single",
+	"origintime" : "2018-10-31 00:00:00",
+	"read_data_from_database" : "true",
+
+	"processqueue" : [
+	{
+		"leveltype" : "hybrid",
+		"levels" : "50-51",
+		"plugins" : [ 
+				{ "name" : "hybrid_height" }
+			]
+	}
+	]
+}

@@ -1,0 +1,35 @@
+{
+    "source_geom_name" : "ECEUR0200",
+    "target_geom_name" : "ECEUR0200",
+    "source_producer" : "134,242",
+    "target_producer" : "242",
+    "start_hour" : "12",
+    "stop_hour" : "24",
+    "step" : "12",
+    "origintime" : "2017-11-15 00:00:00",
+    "read_data_from_database" : "false",
+    "file_write" : "multiple",
+    "processqueue" : [
+	{
+		  	"forecast_type" : "cf,pf1-50",
+		  	"file_write" : "cache only",
+		  	"leveltype" : "ground",
+		  	"levels" : "0",
+		  	"plugins" : [ { "name" : "split_sum", "rr24h" : true } ]
+
+	},
+        {
+            "leveltype" : "ground",
+            "levels" : "0",
+            "plugins" : [ 
+				{ "name" : "probability",
+				"ensemble_size" : 51,
+				"normalized_results" : false,
+                            "param_list" :  [ 
+					{ "name" : "PROB-RR24-1", "input_param1" : "RR-24-MM", "threshold" : 15.0 }
+					]
+				  }
+			]
+		}
+	]
+}

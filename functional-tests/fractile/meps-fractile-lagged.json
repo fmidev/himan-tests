@@ -1,0 +1,22 @@
+{
+    "target_geom_name" : "MEPSNOFMI2500",
+    "source_producer" : "4,260",
+    "target_producer" : "260",
+    "start_hour" : "9",
+    "stop_hour" : "9",
+    "step" : "3",
+    "origintime" : "2020-02-17 09:00:00",
+    "file_write" : "single",
+    "file_type" : "grib2",
+    "read_data_from_database" : false,
+
+    "processqueue" : [
+        {
+            "leveltype" : "height",
+            "levels" : "2",
+            "plugins" : [ 
+		{ "name" : "fractile", "param" : "T-K", "ensemble_type" : "lagged ensemble", "named_ensemble" : "MEPS_LAGGED_ENSEMBLE" }
+          ]
+        }
+    ]
+}

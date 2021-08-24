@@ -1,0 +1,18 @@
+export MASALA_PROCESSED_DATA_BASE=$PWD
+export PGPASSWORD=$RADON_WETODB_PASSWORD
+export PGHOST=$RADON_HOSTNAME
+export PGUSER=radon_admin
+export PGDATABASE=radon
+export PGPORT=$RADON_PORT
+
+if [ $(echo $RADON_HOSTNAME | grep -c "radondb") -gt 0 ]; then
+  echo "attempting to access production database"
+  exit 1
+fi
+
+echo "DELETE FROM table_meta_grid" | psql -Aqt
+echo "INSERT INTO table_meta_grid (producer_id,schema_name,table_name,geometry_id,retention_period, analysis_times) VALUES (109, 'data', 'grid_laps', 1087, interval '1 hour', '{18}')" | psql -Aqt
+
+radon_tables.py --host $RADON_HOSTNAME --port $RADON_PORT -r 109 -d 20191129
+
+echo "DELETE FROM data.grid_laps WHERE param_id IN (166,169)" | psql -Aqt

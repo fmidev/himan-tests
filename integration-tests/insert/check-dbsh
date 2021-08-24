@@ -1,0 +1,29 @@
+cnt=$(echo "SELECT count(*) FROM grid_laps_v WHERE analysis_time = '2019-11-29 18:00:00' AND param_name = 'DD-D'" | psql -Aqt)
+
+if [ $cnt -ne 3 ]; then
+  echo "failed"
+  exit 1
+fi
+
+str=$(echo "SELECT file_location||','||message_no||','||byte_offset||','||byte_length FROM grid_laps_v WHERE analysis_time = '2019-11-29 18:00:00' AND level_value = 500 AND param_name = 'DD-D'" | psql -Aqt)
+file=$(echo $str | cut -d ',' -f 1)
+msgno=$(echo $str | cut -d ',' -f 2)
+offset=$(echo $str | cut -d ',' -f 3)
+length=$(echo $str | cut -d ',' -f 4)
+
+result=$(grib_get -p shortName,level,maximum -w count=$(echo $msgno+1 | bc) $file)
+
+if [ "$result" != "wdir 500 360" ]; then
+  echo "failed"
+  exit 1
+fi
+
+if [ $offset -ne 1816804 ] && [ $offset -ne 2725206 ] && [ $offset -ne 0 ] ; then
+  echo "failed"
+  exit 1
+fi
+
+if [ $length -lt 908402 ]; then
+  echo "failed"
+  exit 1
+fi

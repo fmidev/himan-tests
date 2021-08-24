@@ -1,0 +1,28 @@
+{
+	"target_geom_name" : "LAPSLAMBERT2500",
+	"source_producer" : "109",
+	"target_producer" : "109",
+	"start_hour" : "0",
+	"stop_hour" : "",
+	"step" : "1",
+	"write_mode" : "single",
+        "write_to_database" : true,
+	"read_from_database" : false,
+	"origintime" : "2019-11-29 18:00:00",
+	"forecast_type" : "analysis",
+
+	"processqueue" : [
+	{
+		"leveltype" : "pressure",
+		"levels" : "300,500",
+		"plugins" : [ { "name" : "windvector" } ]
+	},
+	{
+		"leveltype" : "height",
+		"levels" : "10",
+		"plugins" : [ { "name" : "windvector" } ]
+	}
+
+	]
+}
+

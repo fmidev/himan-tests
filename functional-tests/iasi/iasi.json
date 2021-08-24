@@ -1,0 +1,19 @@
+{
+	"target_geom_name" : "IASI_L2",
+	"source_producer" : "501",
+	"target_producer" : "501",
+	"start_hour" : "0",
+	"stop_hour" : "0",
+	"step" : "1",
+	"file_write" : "single",
+	"origintime" : "2018-04-24 10:46:00",
+	"forecast_type" : "an",
+	"read_data_from_database" : false,
+	"processqueue" : [
+	{
+		"leveltype" : "hybrid",
+		"levels" : "137",
+		"plugins" : [   { "name" : "relative_humidity"  } ]
+	}
+	]
+}

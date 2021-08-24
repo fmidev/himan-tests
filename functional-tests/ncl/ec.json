@@ -1,0 +1,21 @@
+{
+     "target_geom_name" : "MTEUR0125",
+     "source_producer" : "131,240",
+     "target_producer" : "240",
+     "hours" : "3",
+     "origintime" : "2019-02-22 00:00:00",
+     "file_write" : "multiple",
+     "read_data_from_database": true,
+
+     "processqueue" : [
+         {
+             "leveltype" : "height",
+             "levels" : "0",
+             "plugins" : [ { 
+                            "name" : "ncl",
+                            "temp" : "0"
+                         } ]
+         }
+
+     ]
+}

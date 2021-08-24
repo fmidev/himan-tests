@@ -1,0 +1,69 @@
+@$∞£QINFO@$∞£ VER 7
+21 NFmiQueryInfo
+0 0 0 0 
+0
+0
+34 NFmiParamDescriptor
+0 0 0 0 
+4
+1306
+18 PROB-WATLEV-HIGH-1
+32700 32700 1 100 0 4 %.1f
+2168
+7 HANSMTA
+1 1 1 1 1 0 0 0 
+0
+1307
+18 PROB-WATLEV-HIGH-2
+32700 32700 1 100 0 4 %.1f
+2168
+7 HANSMTA
+1 1 1 1 1 0 0 0 
+0
+1308
+18 PROB-WATLEV-HIGH-3
+32700 32700 1 100 0 4 %.1f
+2168
+7 HANSMTA
+1 1 1 1 1 0 0 0 
+0
+1305
+17 PROB-WATLEV-LOW-1
+32700 32700 1 100 0 4 %.1f
+2168
+7 HANSMTA
+1 1 1 1 1 0 0 0 
+0
+1 1 1 1 
+1 0 0 0
+31 NFmiLocationBag
+2
+38
+134254
+21 Hamina Pit√§j√§nsaari
+27.1792 60.5628
+32700 1
+134248
+12 Oulu Toppila
+25.4182 65.0403
+32700 1
+1 1 
+0 NFmiArea
+0 NFmiGrid
+1
+1
+6 ground
+0
+0
+1 NFmiTimeDescriptor
+1
+2017 5 19 3 0 0
+2017 5 19 0 0 0
+2017 5 19 0 0 0
+0 0 0 0 0 0 0
+0 0 0 1 0 0 0
+1 
+6
+1
+32
+|rfAÏ*ØA=AìmAú“@˝Aq˛B~∞èA
