@@ -13,7 +13,7 @@
         {
                 "leveltype" : "height",
                 "levels" : "2",
-                "plugins" : [ { "name" : "luatool", "luafile" : [ "../../../himan/himan-scripts/emc.lua" ], "ensemble_size" : 15 } ]
+                "plugins" : [ { "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/emc.lua" ], "ensemble_size" : 15 } ]
         }
 	]
 }

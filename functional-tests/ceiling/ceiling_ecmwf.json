@@ -15,7 +15,7 @@
         "levels" : "0",
         "plugins" : [ {
             "name" : "luatool",
-            "luafile" : [ "../../../himan/himan-scripts/ceiling.lua" ]
+            "luafile" : [ "$HIMAN_SCRIPTS/ceiling.lua" ]
         } ]
 	} 
 	]

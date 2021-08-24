@@ -15,7 +15,7 @@
     "levels" : "0",
     "plugins" : [
         { "name" : "luatool", "luafile" : [
-            "../../../himan/himan-scripts/snowload.lua"
+            "$HIMAN_SCRIPTS/snowload.lua"
             ],
           "ThreadDistribution" : "kThreadForForecastType"
         }]

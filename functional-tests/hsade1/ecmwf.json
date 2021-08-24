@@ -17,8 +17,8 @@
 		"plugins" : [ 
 			{ "name" : "luatool",
 		   		  "luafile" : [ 
-					"../../../himan/himan-scripts/smartsymbol.lua",
-					"../../../himan//himan-scripts/hsade1.lua"
+					"$HIMAN_SCRIPTS/smartsymbol.lua",
+					"$HIMAN_SCRIPTS/hsade1.lua"
 				  ] 
 			}
 		]

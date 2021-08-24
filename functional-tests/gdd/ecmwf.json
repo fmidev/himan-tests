@@ -16,7 +16,7 @@
         "levels" : "2",
         "plugins" : [ {
             "name" : "luatool",
-            "luafile" : [ "../../../himan/himan-scripts/growing-degree-days.lua" ]
+            "luafile" : [ "$HIMAN_SCRIPTS/growing-degree-days.lua" ]
         } ]
     }
     ]

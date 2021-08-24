@@ -16,9 +16,9 @@
         "plugins" : [ {
             "name" : "luatool",
             "luafile" : [ 
-	"../../../himan/himan-scripts/precipitation-type.lua",
-	"../../../himan/himan-scripts/fog-intensity.lua",
-	"../../../himan/himan-scripts/smartsymbol.lua"
+	"$HIMAN_SCRIPTS/precipitation-type.lua",
+	"$HIMAN_SCRIPTS/fog-intensity.lua",
+	"$HIMAN_SCRIPTS/smartsymbol.lua"
 ]
         } ]
     }

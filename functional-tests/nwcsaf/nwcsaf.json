@@ -13,7 +13,7 @@
 	{
 		"leveltype" : "height",
 		"levels" : "0",
-		"plugins" : [   { "name" : "luatool", "luafile" : [ "../../../himan/himan-scripts/nwcsaf-clouds.lua" ] } ]
+		"plugins" : [   { "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/nwcsaf-clouds.lua" ] } ]
 	}
 	]
 }

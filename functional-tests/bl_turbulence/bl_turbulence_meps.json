@@ -17,7 +17,7 @@
         "levels" : "0",
         "plugins" : [ {
             "name" : "luatool",
-            "luafile" : [ "../../../himan/himan-scripts/bl-turbulence.lua" ]
+            "luafile" : [ "$HIMAN_SCRIPTS/bl-turbulence.lua" ]
         } ]
     }
     ]
