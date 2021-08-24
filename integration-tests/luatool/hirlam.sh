@@ -5,13 +5,16 @@ echo "npres test is not behaving nicely, disabling it"
 exit 0
 set -x
 
+../../bin/download-if-not-exists.sh integration_npres_hirlam_source.grib
+
+
 if [ -z "$HIMAN" ]; then
 	export HIMAN="../../himan-bin/himan"
 fi
 
 rm -f N*grib
 
-$HIMAN -d 4 -f hirlam.json hirlam_npres_source.grib -s stat --no-cuda
+$HIMAN -d 4 -f hirlam.json integration_npres_hirlam_source.grib -s stat --no-cuda
 
 grib_compare hirlam_npres_result.grib ./N-0TO1_pressure_600_rll_1030_816_0_041.grib
 
@@ -26,7 +29,7 @@ if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
 
   rm -f N*grib
 
-  $HIMAN -s stat -d 5 -f hirlam.json hirlam_npres_source.grib
+  $HIMAN -s stat -d 5 -f hirlam.json integration_npres_hirlam_source.grib
 
   grib_compare -A 0.001 hirlam_npres_result.grib ./N-0TO1_pressure_600_rll_1030_816_0_041.grib
 
