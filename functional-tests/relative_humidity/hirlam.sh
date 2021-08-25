@@ -10,14 +10,14 @@ rm -f RH-PRCNT_hybrid_65_rll_1030_816_0_00*.grib P-HPA*grib
 
 $HIMAN -d 5 -j 1 -f relative_humidity_hirlam.json -t grib --no-cuda source_hirlam.grib
 
-grib_compare RH-PRCNT_hybrid_65_rll_1030_816_0_004.grib result_hirlam_4.grib 
+grib_compare -A 0.01 RH-PRCNT_hybrid_65_rll_1030_816_0_004.grib result_hirlam_4.grib 
 
 if [ $? -ne 0 ];then
   echo relative humidity/hirlam failed on CPU
   exit 1
 fi
 
-grib_compare RH-PRCNT_hybrid_65_rll_1030_816_0_005.grib result_hirlam_5.grib 
+grib_compare -A 0.01 RH-PRCNT_hybrid_65_rll_1030_816_0_005.grib result_hirlam_5.grib 
 
 if [ $? -eq 0 ];then
   echo relative humidity/hirlam success on CPU!

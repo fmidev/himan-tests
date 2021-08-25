@@ -10,7 +10,7 @@ rm -f RH-PRCNT*.grib
 
 $HIMAN -d 5 -f relative_humidity_harmonie.json -t grib --no-cuda source_harmonie.grib -s stat
 
-grib_compare ./RH-PRCNT_hybrid_44_rll_720_800_0_001.grib result_harmonie.grib 
+grib_compare -A 0.01 ./RH-PRCNT_hybrid_44_rll_720_800_0_001.grib result_harmonie.grib 
 
 if [ $? -eq 0 ];then
   echo relative humidity/harmonie success on CPU!
