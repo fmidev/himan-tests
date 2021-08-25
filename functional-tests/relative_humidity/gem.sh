@@ -10,7 +10,7 @@ rm -f RH-PRCNT_pressure_700_ll_1500_751_0_006.grib
 
 $HIMAN -d 5 -j 1 -f relative_humidity_gem.json --no-cuda source_gem.grib
 
-grib_compare RH-PRCNT_pressure_700_ll_1500_751_0_006.grib result_gem.grib 
+grib_compare -A 0.01 RH-PRCNT_pressure_700_ll_1500_751_0_006.grib result_gem.grib 
 
 if [ $? -ne 0 ];then
   echo relative humidity/gem failed on CPU
