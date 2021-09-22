@@ -22,21 +22,21 @@ RELEASE = (not DEBUG)
 workspace = os.environ['HOME'] + "/himan"
 
 if os.environ['HOME'] == "/home/weto":
-	workspace = os.environ['HOME'] + "/workspace/himan"
-	
+    workspace = os.environ['HOME'] + "/workspace/himan"
+
 # cuda toolkit path
 
 cuda_toolkit_path = '/usr/local/cuda'
 
 if os.environ.get('CUDA_TOOLKIT_PATH') is None:
-	print "Environment variable CUDA_TOOLKIT_PATH not set, assuming " + cuda_toolkit_path
+    print("Environment variable CUDA_TOOLKIT_PATH not set, assuming " + cuda_toolkit_path)
 else:
-	cuda_toolkit_path = os.environ['CUDA_TOOLKIT_PATH']
+    cuda_toolkit_path = os.environ['CUDA_TOOLKIT_PATH']
 
 have_cuda = False
 
 if os.path.isfile(cuda_toolkit_path + '/lib64/libcudart.so'):
-	have_cuda = True
+    have_cuda = True
 
 # Assign compilers
 
@@ -54,14 +54,14 @@ if os.environ.get('CXX') != None:
 includes = []
 
 if os.environ.get('INCLUDEDIR') != None:
-	includes.append(os.environ.get('INCLUDEDIR').split(';'))
+    includes.append(os.environ.get('INCLUDEDIR').split(';'))
 
 includes.append('include')
 includes.append(workspace + '/himan-lib/include')
 includes.append(workspace + '/himan-plugins/include')
 
 if have_cuda:
-	includes.append(cuda_toolkit_path + '/include')
+    includes.append(cuda_toolkit_path + '/include')
 
 env.Append(CPPPATH = includes)
 
@@ -70,23 +70,23 @@ env.Append(CPPPATH = includes)
 librarypaths = []
 
 if os.environ.get('LIBRARYDIR') != None:
-	librarypaths.append(os.environ.get('LIBRARYDIR').split(';'))
+    librarypaths.append(os.environ.get('LIBRARYDIR').split(';'))
 
 
 if RELEASE:
-	librarypaths.append(workspace + '/himan-lib/build/release')
-	librarypaths.append(workspace + '/himan-plugins/build/release')
+    librarypaths.append(workspace + '/himan-lib/build/release')
+    librarypaths.append(workspace + '/himan-plugins/build/release')
 
 else:
-	librarypaths.append(workspace + '/himan-lib/build/debug')
-	librarypaths.append(workspace + '/himan-plugins/build/debug')
+    librarypaths.append(workspace + '/himan-lib/build/debug')
+    librarypaths.append(workspace + '/himan-plugins/build/debug')
 
 librarypaths.append('/usr/lib64')
 librarypaths.append('/usr/lib64/boost169')
 librarypaths.append('/usr/lib64/oracle')
 
 if have_cuda:
-	librarypaths.append(cuda_toolkit_path + '/lib64')
+    librarypaths.append(cuda_toolkit_path + '/lib64')
 
 env.Append(LIBPATH = librarypaths)
 
@@ -104,7 +104,7 @@ libraries.append('fmidb')
 libraries.append('clntsh')
 
 if have_cuda:
-	libraries.append('cudart')
+    libraries.append('cudart')
 
 # plugins 
 libraries.append('radon')
@@ -177,7 +177,7 @@ env.Append(LINKFLAGS = ['-rdynamic','-pthread'])
 env.Append(CPPDEFINES=['UNIX'])
 
 if have_cuda:
-	env.Append(CPPDEFINES=['HAVE_CUDA'])
+    env.Append(CPPDEFINES=['HAVE_CUDA'])
 
 # Clean fails without this
 env.Append(NVCCDEFINES = ['HAVE_CUDA'])
@@ -203,23 +203,23 @@ env.Append(NVCCPATH = [workspace + '/himan-lib/include']) # cuda-helper
 build_dir = ""
 
 if RELEASE:
-	env.Append(CCFLAGS = ['-O2'])
-	env.Append(CPPDEFINES = ['NDEBUG'])
-	env.Append(NVCCFLAGS = ['-O2'])
-	env.Append(NVCCDEFINES = ['NDEBUG'])
-	build_dir = "build/release"
+    env.Append(CCFLAGS = ['-O2'])
+    env.Append(CPPDEFINES = ['NDEBUG'])
+    env.Append(NVCCFLAGS = ['-O2'])
+    env.Append(NVCCDEFINES = ['NDEBUG'])
+    build_dir = "build/release"
 
 if DEBUG:
-	env.Append(CPPDEFINES = ['DEBUG'])
-	env.Append(CCFLAGS = ['-O0', '-g'])
-	env.Append(CCFLAGS = cflags_extra)
-#	env.Append(CCFLAGS = cflags_difficult)
+    env.Append(CPPDEFINES = ['DEBUG'])
+    env.Append(CCFLAGS = ['-O0', '-g'])
+    env.Append(CCFLAGS = cflags_extra)
+#    env.Append(CCFLAGS = cflags_difficult)
 
-	# Cuda
-	env.Append(NVCCFLAGS = ['-O0','-g','-G', '-lineinfo'])
-	env.Append(NVCCDEFINES = ['DEBUG'])
+    # Cuda
+    env.Append(NVCCFLAGS = ['-O0','-g','-G', '-lineinfo'])
+    env.Append(NVCCDEFINES = ['DEBUG'])
         
-	build_dir = "build/debug"
+    build_dir = "build/debug"
 
 SConscript('SConscript', exports = ['env'], variant_dir=build_dir, duplicate=0)
 Clean('.', build_dir)
