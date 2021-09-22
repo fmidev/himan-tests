@@ -18,8 +18,8 @@ INSTALL_TARGET = /usr/bin
 # The rules
 
 all release:
-	scons $(SCONS_FLAGS)
+	scons-3 $(SCONS_FLAGS)
 debug:
-	scons $(SCONS_FLAGS) --debug-build || exit 1
+	scons-3 $(SCONS_FLAGS) --debug-build || exit 1
 clean:
-	scons -c ; scons --debug-build -c ; rm -f *~ source/*~ include/*~
+	scons-3 -c ; scons-3 --debug-build -c ; rm -f *~ source/*~ include/*~
