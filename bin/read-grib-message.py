@@ -1,11 +1,11 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import gribapi
 import sys
 
 if len(sys.argv) != 5:
-    print "usage: %s infile offset bytes outfile" % sys.argv[0]
-    print "data is appended to outfile"
+    print ("usage: %s infile offset bytes outfile" % sys.argv[0])
+    print ("data is appended to outfile")
     sys.exit(1)
 
 infile = sys.argv[1]
@@ -23,6 +23,6 @@ with open(infile, "rb") as fp:
 
 gh = gribapi.grib_new_from_message(buff)
 
-with open(outfile, "a") as fp:
+with open(outfile, "ab") as fp:
     gribapi.grib_write(gh, fp)
 
