@@ -18,7 +18,7 @@ test $mean = 1.6721824004888
 
 mean=$(gdalinfo -stats NWCSAF_EFFCLD-0TO1_height_0_lcc_603_679_0_000.tif | grep MEAN | cut -d '=' -f 2 | head -c 15)
 
-test $mean = 0.6768189947467
+test $mean = 0.6496742943099
 
 if [ $? -eq 0 ];then
   echo nwcsaf success on CPU!
