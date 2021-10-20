@@ -6,6 +6,7 @@ if [ $cnt -ne 3 ]; then
 fi
 
 str=$(echo "SELECT file_location||','||message_no||','||byte_offset||','||byte_length FROM grid_laps_v WHERE analysis_time = '2019-11-29 18:00:00' AND level_value = 500 AND param_name = 'DD-D'" | psql -Aqt)
+echo $str
 file=$(echo $str | cut -d ',' -f 1)
 msgno=$(echo $str | cut -d ',' -f 2)
 offset=$(echo $str | cut -d ',' -f 3)
