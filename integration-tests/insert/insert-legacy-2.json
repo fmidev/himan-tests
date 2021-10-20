@@ -3,7 +3,7 @@
 	"source_producer" : "109",
 	"target_producer" : "109",
 	"start_hour" : "0",
-	"stop_hour" : "",
+	"stop_hour" : "0",
 	"step" : "1",
 	"file_write" : "single",
 	"read_from_database" : false,
