@@ -10,7 +10,7 @@ fi
 
 rm -rf 109 insert-legacy-*.json.grib*
 
-$HIMAN -d 4 -f insert-legacy-1.json -t grib2 insert-source.grib2
+$HIMAN -j 1 -d 4 -f insert-legacy-1.json -t grib2 insert-source.grib2
 
 cnt=$(ls -1 109/201911291800/LAPSLAMBERT2500/0/ | wc -l)
 
@@ -25,7 +25,7 @@ echo "insert/legacy-1 success"
 
 rm -rf 109 insert-legacy-*.json.grib*
 
-$HIMAN -d 4 -f $PWD/insert-legacy-2.json -t grib2 insert-source.grib2
+$HIMAN -j 1 -d 4 -f $PWD/insert-legacy-2.json -t grib2 insert-source.grib2
 
 cnt=$(grib_count ./insert-legacy-2.json.grib2)
 

@@ -37,7 +37,7 @@ fi
 #  cd $cwd
 #}
 
-image=$($crun images -f reference=radon-himan-regression-tests --format "{{.Repository}}")
+image=$($crun images -f reference=radon-himan-regression-tests --format "{{.Repository}}" | head -1)
 
 if [ -n "$image" ]; then
   echo "using local image $image"

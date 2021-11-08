@@ -10,7 +10,7 @@ fi
 
 rm -rf 109
 
-$HIMAN -d 4 -f insert-all.json -t grib2 insert-source.grib2
+$HIMAN -j 1 -d 4 -f insert-all.json -t grib2 insert-source.grib2
 
 cnt=$(grib_count 109/201911291800/LAPSLAMBERT2500/fc201911291800+000h00m.grib2)
 

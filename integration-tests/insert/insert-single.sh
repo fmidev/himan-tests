@@ -13,7 +13,7 @@ export MASALA_PROCESSED_DATA_BASE=$PWD
 
 rm -rf 109
 
-$HIMAN -d 4 -f insert-single.json -t grib2 insert-source.grib2
+$HIMAN -j 1 -d 4 -f insert-single.json -t grib2 insert-source.grib2
 
 cnt=$(ls -1 $stub/*pressure*.grib2 | wc -l)
 
