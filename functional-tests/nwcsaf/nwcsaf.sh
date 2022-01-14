@@ -10,7 +10,7 @@ rm -f rm CLDTYPE-N* NWCSAF_EFFCLD-0TO1*
 
 $HIMAN -d 5 -f nwcsaf.json -t geotiff ct.tif ctth_quality.tif ctth_effectiv.tif --no-cuda
 
-export PATH=$PATH:/usr/gdal32/bin
+export PATH=$PATH:/usr/gdal33/bin
 
 mean=$(gdalinfo -stats CLDTYPE-N_height_0_lcc_603_679_0_000.tif | grep MEAN | cut -d '=' -f 2 | head -c 15)
 
