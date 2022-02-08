@@ -87,6 +87,7 @@ else:
 	librarypaths.append(workspace + '/himan-plugins/build/debug')
 
 librarypaths.append('/usr/gdal34/lib')
+librarypaths.append('/usr/proj82/lib')
 librarypaths.append('/usr/lib64')
 librarypaths.append('/usr/lib64/boost169')
 librarypaths.append('/usr/lib64/oracle')
@@ -132,7 +133,7 @@ libraries.append('smartmet-newbase')
 env.Append(LIBS = libraries)
 
 env.Append(LIBS = [ 'boost_filesystem', 'boost_system', 'boost_regex', 'boost_iostreams', 'boost_thread', 'boost_unit_test_framework' , 'boost_date_time'])
-env.Append(LIBS = [ 'gdal', 'z', 'bz2', 'rt', 'fmt' ])
+env.Append(LIBS = [ 'proj', 'gdal', 'z', 'bz2', 'rt', 'fmt' ])
 
 # CFLAGS
 
