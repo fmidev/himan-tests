@@ -12,13 +12,13 @@ $HIMAN -d 5 -f nwcsaf.json -t geotiff ct.tif ctth_quality.tif ctth_effectiv.tif 
 
 export PATH=$PATH:/usr/gdal34/bin
 
-mean=$(gdalinfo -stats CLDTYPE-N_height_0_lcc_603_679_0_000.tif | grep MEAN | cut -d '=' -f 2 | head -c 15)
+mean=$(gdalinfo -stats CLDTYPE-N_height_0_lcc_606_682_0_000.tif | grep MEAN | cut -d '=' -f 2 | head -c 10)
 
-test $mean = 1.6721824004888
+test $mean = 1.67218240
 
-mean=$(gdalinfo -stats NWCSAF_EFFCLD-0TO1_height_0_lcc_603_679_0_000.tif | grep MEAN | cut -d '=' -f 2 | head -c 15)
+mean=$(gdalinfo -stats NWCSAF_EFFCLD-0TO1_height_0_lcc_606_682_0_000.tif | grep MEAN | cut -d '=' -f 2 | head -c 10)
 
-test $mean = 0.6496742943099
+test $mean = 0.64361442
 
 if [ $? -eq 0 ];then
   echo nwcsaf success on CPU!
