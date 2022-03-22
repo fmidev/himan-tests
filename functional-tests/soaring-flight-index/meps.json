@@ -1,0 +1,26 @@
+{
+    "target_geom_name" : "SMARTMET2500",
+    "source_producer" : "4,260",
+    "target_producer" : "260",
+    "forecast_type" : "cf",
+    "start_hour" : "12",
+    "stop_hour" : "12",
+    "step" : "1",
+    "origintime" : "2022-03-22 06:00:00",
+    "write_mode" : "single",
+    "write_to_database" : false,
+    "read_from_database": false,
+
+    "processqueue" : [
+    {
+        "leveltype" : "height",
+        "levels" : "0",
+        "plugins" : [
+        {
+            "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/soaring-flight-index.lua", "$HIMAN_SCRIPTS/thermal-bird-migration-index.lua" ]
+        }
+        ]
+    }
+]
+}
+
