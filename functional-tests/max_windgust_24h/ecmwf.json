@@ -16,7 +16,7 @@
             "leveltype" : "height",
             "levels" : "10",
             "plugins" : [
-                { "name" : "luatool", "luafile" : [ "/usr/shared/himan-scripts/max-windgust-24h.lua" ] }]
+                { "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/max-windgust-24h.lua" ] }]
         }
     ]
 }

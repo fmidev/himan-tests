@@ -16,7 +16,7 @@
             "leveltype" : "height",
             "levels" : "0",
             "plugins" : [
-                { "name" : "luatool", "luafile" : [ "/usr/share/himan-scripts/rajuilma-24h.lua" ] }]
+                { "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/rajuilma-24h.lua" ] }]
         }
     ]
 }
