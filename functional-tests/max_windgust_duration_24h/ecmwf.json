@@ -1,0 +1,23 @@
+{
+    "source_geom_name" : "ECGLO0100",
+    "target_geom_name" : "ECGLO0100",
+    "source_producer" : "131,240",
+    "target_producer" : "240",
+    "start_hour" : "24",
+    "stop_hour" : "24",
+    "step" : "3",
+    "origintime" : "2022-05-30 00:00:00",
+    "write_mode" : "all",
+    "write_to_database" : false,
+    "read_from_database" : false,
+
+    "processqueue" : [
+        {
+            "leveltype" : "height",
+            "levels" : "10",
+            "plugins" : [
+                { "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/max-windgust-duration-24h.lua" ] }]
+        }
+    ]
+}
+

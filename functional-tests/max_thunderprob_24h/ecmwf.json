@@ -1,0 +1,23 @@
+{
+    "source_geom_name" : "ECEUR0200,ECEUR0200G2",
+    "target_geom_name" : "ECEUR0200",
+    "source_producer" : "242",
+    "target_producer" : "242",
+    "start_hour" : "24",
+    "stop_hour" : "24",
+    "step" : "3",
+    "origintime" : "2022-05-30 00:00:00",
+    "write_mode" : "all",
+    "write_to_database" : false,
+    "read_from_database" : false,
+
+    "processqueue" : [
+        {
+            "leveltype" : "height",
+            "levels" : "0",
+            "plugins" : [
+                { "name" : "luatool", "luafile" : [ "$HIMAN_SCRIPTS/max-thunderprob-24h.lua" ] }]
+        }
+    ]
+}
+
