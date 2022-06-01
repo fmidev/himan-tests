@@ -33,7 +33,15 @@ if [ ! -f "2020/03_24.grib" ] || [ $cnt -ne 1 ]; then
   exit 1
 fi
 
+date=$(date +%Y-%m-%d)
+cat filename-template.json | jq '.filename_template="{wall_time:%Y-%m-%d}.grib"' | $HIMAN -f -  filename-template-source.grib
+
+if [ ! -f "$date.grib" ]; then
+  echo "filename_template failed"
+  exit 1
+fi
+
 echo "filename_template success"
 
 rm -rf 2020
-rm -f test_230*{grib,fqd}
+rm -f test_230*{grib,fqd} $date.grib
