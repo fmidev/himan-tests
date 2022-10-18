@@ -1,4 +1,5 @@
 #!/bin/sh
+exit 0 # disabled, HIRLAM going out of business
 
 set -x
 
