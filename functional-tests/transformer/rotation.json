@@ -7,9 +7,10 @@
     "start_minute" : "360",
     "stop_minute" : "360",
     "step" : "60",
-    "origintime" : "2022-11-11 06:00:00",
+    "origintime" : "2022-11-11 05:00:00",
     "write_mode" : "single",
     "write_to_database" : false,
+    "read_from_database" : false,
 
     "processqueue" : [
     {
