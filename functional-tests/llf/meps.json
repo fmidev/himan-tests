@@ -1,0 +1,22 @@
+{
+    "target_geom_name" : "MEPS2500D",
+    "source_producer" : "4,260",
+    "target_producer" : "260",
+    "start_hour" : "45",
+    "stop_hour" : "45",
+    "step" : "1",
+    "file_write" : "multiple",
+    "origintime" : "2022-11-15 09:00:00",
+    "read_data_from_database": true,
+    "forecast_type" : "cf",
+    "processqueue" : [
+    {
+        "leveltype" : "height",
+        "levels" : "0",
+        "plugins" : [ {
+            "name" : "luatool",
+            "luafile" : [ "$HIMAN_SCRIPTS/llf.lua" ]
+        } ]
+    }
+    ]
+}
