@@ -14,7 +14,7 @@
 			"leveltype" : "height",
 			"levels" : "0",
 			"plugins" : [
-				{ "name" : "transformer", "source_param" : "T-C", "target_param" : "T-C", "time_interpolation" : true }
+				{ "name" : "transformer", "source_param" : "T-K", "target_param" : "T-K", "time_interpolation" : true }
 			]
 		}
 	]
