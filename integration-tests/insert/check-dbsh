@@ -19,7 +19,7 @@ if [ "$result" != "wdir 500 360" ]; then
   exit 1
 fi
 
-if [ $offset -ne 1816804 ] && [ $offset -ne 2725206 ] && [ $offset -ne 0 ] ; then
+if [ $offset -ne 3021879 ] && [ $offset -ne 1816804 ] && [ $offset -ne 2725206 ] && [ $offset -ne 0 ] ; then
   echo "failed"
   exit 1
 fi
