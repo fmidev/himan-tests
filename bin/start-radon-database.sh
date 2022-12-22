@@ -17,6 +17,12 @@ if [ -n "$container" ]; then
   exit 1
 fi
 
+inject_data() {
+  for f in $(ls etc/*.sql); do
+    psql -q -f $f
+  done
+}
+
 #function buildimage() {
 #  echo "building database image"
 #  cwd=$PWD
@@ -54,7 +60,7 @@ $crun run \
 	-e RADON_WETODB_PASSWORD=$RADON_WETODB_PASSWORD \
 	-e RADON_RADON_ADMIN_PASSWORD=$RADON_RADON_ADMIN_PASSWORD \
 	--rm --name=radon-himan-regression-tests-container-$user \
-	-t $image > /dev/null 2>&1
+	-t $image > /dev/null
 
 set +e
 
@@ -67,8 +73,8 @@ done
 
 export PGHOST=$RADON_HOSTNAME
 export PGPORT=$RADON_PORT
-export PGUSER=wetodb
-export PGPASSWORD=$RADON_WETODB_PASSWORD
+export PGUSER=radon_admin
+export PGPASSWORD=$RADON_RADON_ADMIN_PASSWORD
 export PGDATABASE=radon
 
 psql -Aqt -c "select now()" > /dev/null 2>&1
@@ -80,3 +86,5 @@ while [ $? -ne 0 ]; do
 done
 
 echo " database up"
+
+inject_data
