@@ -20,7 +20,7 @@
 					"source_levels" : "0",
 					"target_param" : "P-PA",
 					"base" : "0", "scale" : 0.01,
-                                        "extra_file_metadata": "shapeOfTheEarth=6,latitudeOfFirstGridPointInDegrees=-65.03:d" }
+                                        "extra_file_metadata": "shapeOfTheEarth=6,latitudeOfFirstGridPointInDegrees:d=-65.03" }
 		 ]
         }
 
