@@ -8,7 +8,7 @@ fi
 
 rm -f blend-mae.grib2
 
-$HIMAN -d 5 -f blend-mae.json source-blend-mae.grib2
+$HIMAN -t grib2 -d 5 -f blend-mae.json source-blend-mae.grib2
 
 grib_compare blend-mae.grib2 result-blend-mae.grib2
 
