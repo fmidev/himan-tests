@@ -31,7 +31,10 @@ fi
      echo iasi success on GPU!
    else
      echo iasi failed on GPU
+     exit 1
    fi
 else
   echo "no cuda device found for cuda tests"
 fi
+
+rm -f iasi.json.grib2
