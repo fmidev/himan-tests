@@ -26,7 +26,7 @@
 				"ensemble_size" : 51,
 				"normalized_results" : false,
                             "param_list" :  [ 
-					{ "name" : "PROB-RR24-1", "input_param1" : "RR-24-MM", "threshold" : 15.0 }
+					{ "name" : "PROB-RR24-1", "input_param1" : "RR-24-MM", "threshold" : 15.0, "aggregation" : "accumulation,24:00:00" }
 					]
 				  }
 			]
