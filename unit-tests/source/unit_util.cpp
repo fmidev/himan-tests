@@ -1,5 +1,6 @@
 #include "himan_unit.h"
 #include "util.h"
+#include <cstdio>
 
 #define BOOST_TEST_MODULE util
 
@@ -110,4 +111,51 @@ BOOST_AUTO_TEST_CASE(FLIP)
 
         BOOST_REQUIRE(m.At(0) == 0);
         BOOST_REQUIRE(m.At(35) == 5);
+}
+
+BOOST_AUTO_TEST_CASE(FILETYPE)
+{
+	// generate files with magic header
+
+	// grib
+	auto fp = fopen("/tmp/grib", "wb");
+	const char grib[4] = {0x47, 0x52, 0x49, 0x42};
+	fwrite(grib, 1, 4, fp);
+	fclose(fp);
+
+	// nc3
+	fp = fopen("/tmp/nc3", "wb");
+	const char nc3[4] = {0x43, 0x44, 0x46, 0x01};
+	fwrite(nc3, 1, 4, fp);
+	fclose(fp);
+
+	// nc4
+	fp = fopen("/tmp/nc4", "wb");
+	const unsigned char nc4[4] = {0xD3, 0x48, 0x44, 0x46};
+	fwrite(nc4, 1, 4, fp);
+	fclose(fp);
+
+	// tif
+	fp = fopen("/tmp/tif", "wb");
+	const unsigned char tif[4] = {0x49, 0x49, 0x2A, 0x0};
+	fwrite(tif, 1, 4, fp);
+	fclose(fp);
+
+	// qd
+	fp = fopen("/tmp/qd", "wb");
+	const unsigned char qd[9] = {0x40, 0x24, 0xb0, 0xa3, 0x51, 0x49, 0x4e, 0x46, 0x4f};
+	fwrite(qd, 1, 9, fp);
+	fclose(fp);
+
+	BOOST_REQUIRE(util::FileType("/tmp/grib") == kGRIB);
+	BOOST_REQUIRE(util::FileType("/tmp/nc3") == kNetCDF);
+	BOOST_REQUIRE(util::FileType("/tmp/nc4") == kNetCDFv4);
+	BOOST_REQUIRE(util::FileType("/tmp/tif") == kGeoTIFF);
+	BOOST_REQUIRE(util::FileType("/tmp/qd") == kQueryData);
+
+	std::remove("/tmp/grib");
+	std::remove("/tmp/nc3");
+	std::remove("/tmp/nc4");
+	std::remove("/tmp/tif");
+	std::remove("/tmp/qd");
 }
