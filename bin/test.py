@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import traceback
 import sys
@@ -9,7 +9,7 @@ from decimal import *
 from gribapi import *
 
 if len(sys.argv) < 3:
-	print "usage: test.py firstfile secondfile"
+	print("usage: test.py firstfile secondfile")
 	sys.exit(1)
 
 FIRST_FILE=sys.argv[1]
@@ -26,8 +26,8 @@ def read():
 	firstfile = open(FIRST_FILE)
 	secondfile = open(SECOND_FILE)
 
-	print "First file: " + FIRST_FILE
-	print "Second file: " + SECOND_FILE
+	print("First file: " + FIRST_FILE)
+	print("Second file: " + SECOND_FILE)
 	
 	msgno = 0
 	max_found_diff = 0
@@ -44,18 +44,18 @@ def read():
 		if firstgrid is None or secondgrid is None:
 			break
 
-		print "Reading msg " + str(msgno)
+		print("Reading msg " + str(msgno))
 
 		firstvalues = grib_get_values(firstgrid)
 		secondvalues = grib_get_values(secondgrid)
 
 		if len(firstvalues) != len(secondvalues):
-			print "ERROR: grib data lengths are not the same"
+			print("ERROR: grib data lengths are not the same")
 			sys.exit(1)
 
 		errors=0
 
-		for i in xrange(len(firstvalues)):
+		for i in range(len(firstvalues)):
 			firstvalue = firstvalues[i]
 			secondvalue = secondvalues[i]
 
@@ -66,11 +66,11 @@ def read():
 			diff = round(diff, e)
 
 			if diff > MAX_DIFF:
-				print "Max diff (" + str(MAX_DIFF) + ") exceeded at grid point: " + str(i) + " (#" + str(i+1) + ") first value: " + str(firstvalue) + ", secondvalue: " + str(secondvalue) + " diff: " + str(diff)
+				print("Max diff (" + str(MAX_DIFF) + ") exceeded at grid point: " + str(i) + " (#" + str(i+1) + ") first value: " + str(firstvalue) + ", secondvalue: " + str(secondvalue) + " diff: " + str(diff))
 				if ALLOWED_ERRORS > 0:
 					errors = errors+1
 					if errors > ALLOWED_ERRORS:
-						print "Too many errors, exiting"
+						print("Too many errors, exiting")
 						sys.exit(1)
 				else:
 					sys.exit(1)
@@ -85,7 +85,7 @@ def read():
 		grib_release(firstgrid)
 		grib_release(secondgrid)	 
 		
-		print "Grib data is equal enough (largest diff allowed: " + str(MAX_DIFF) + ", largest diff found: " + str(max_found_diff) + ", gridpoint " + str(grid_point_of_max_diff) + ", message " + str(msg_of_max_diff) + " allowed errors " + str(errors) + "/" + str(ALLOWED_ERRORS) + ")"
+		print("Grib data is equal enough (largest diff allowed: " + str(MAX_DIFF) + ", largest diff found: " + str(max_found_diff) + ", gridpoint " + str(grid_point_of_max_diff) + ", message " + str(msg_of_max_diff) + " allowed errors " + str(errors) + "/" + str(ALLOWED_ERRORS) + ")")
 	
 	firstfile.close()
 	secondfile.close()
@@ -93,8 +93,8 @@ def read():
 def main():
 	try:
 		read()
-	except GribInternalError,err:
-		print >>sys.stderr,err.msg
+	except GribInternalError as err:
+		print(err.msg, file=sys.stderr)
 
 	return 0
 
