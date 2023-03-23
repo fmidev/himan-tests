@@ -159,3 +159,24 @@ BOOST_AUTO_TEST_CASE(FILETYPE)
 	std::remove("/tmp/tif");
 	std::remove("/tmp/qd");
 }
+
+BOOST_AUTO_TEST_CASE(GETSCALEDVALUE)
+{
+	auto s = util::GetScaledValue(100.);
+	BOOST_REQUIRE(s.first == 100 && s.second == 0);
+
+	s = util::GetScaledValue(500.1);
+	BOOST_REQUIRE(s.first == 5001 && s.second == -1);
+
+	s = util::GetScaledValue(5.12345);
+	BOOST_REQUIRE(s.first == 512345 && s.second == -5);
+
+	s = util::GetScaledValue(5.12345678);
+	BOOST_REQUIRE(s.first == 512345678 && s.second == -8);
+
+	s = util::GetScaledValue(5.999999999);
+	BOOST_REQUIRE(s.first == 600000000 && s.second == -8);
+
+	s = util::GetScaledValue(-13.44);
+	BOOST_REQUIRE(s.first == -1344 && s.second == -2);
+}
