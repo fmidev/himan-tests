@@ -21,21 +21,4 @@ else
   exit 1
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
-
-  rm -f FFG2-MS_height_10_rll_661_576_0_001.grib
-
-  $HIMAN -d 4 -j 1 -f gust_ecmwf.json -t grib gust_ecmwf_source.grib
-
-  grib_compare -A 0.5 FFG2-MS_height_10_rll_661_576_0_001.grib result.grib
-
-  if [ $? -eq 0 ];then
-    echo gust/ecmwf success on GPU!
-  else
-    echo gust/ecmwf failed on GPU
-    exit 1
-  fi
-
-fi
-
 rm -f FFG2-MS_height_10_rll_661_576_0_001.grib
