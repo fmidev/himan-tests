@@ -7,7 +7,8 @@
         "stop_hour" : "16",
         "step" : "1",
         "file_write" : "multiple",
-        "origintime" : "2020-05-20 11:00:00",
+        "origintime" : "2023-05-22 13:00:00",
+	"read_data_from_database" : false,
 
         "processqueue" : [
         {

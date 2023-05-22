@@ -6,9 +6,9 @@ if [ -z "$HIMAN" ]; then
         export HIMAN="../../himan-bin/build/debug/himan"
 fi
 
-rm -f PROB-FROST*.grib
+rm -f PROB-FROST*.grib2
 
-$HIMAN -d 5 -f frost.json -t grib --no-cuda source.grib
+$HIMAN -d 5 -f frost.json -t grib2 --no-cuda source.grib
 
 grib_compare -A 0.001 PROB-FROST-1_height_2_polster_255_280_0_016.grib2 PF1-result.grib
 if [ $? -eq 0 ];then
@@ -26,4 +26,4 @@ else
   exit 1
 fi
 
-rm -f PROB-FROST*.grib
+rm -f PROB-FROST*.grib2
