@@ -14,7 +14,7 @@ source_data=preform_hybrid_meps_source.grib
 
 $HIMAN -d 4 -f meps-preform.json --no-cuda -s meps-stat $source_data -t grib2
 
-grib_compare meps-result.grib PRECFORM2-N_height_0_lcc_889_949_0_003_4_0.grib2
+grib_compare PRECFORM2-N_height_0_lcc_949_1069_0_003_4_0.grib2 meps-result.grib
 
 if [ $? -ne 0 ];then
   echo preform_hybrid/meps failed on CPU

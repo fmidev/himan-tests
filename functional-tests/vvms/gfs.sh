@@ -21,7 +21,7 @@ fi
 
 if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
 
-  mv vvms_gfs.json.grib vvms_gfs.json-CPU.grib
+  rm -f VV-MS*.grib P-PA*.grib
 
   $HIMAN -d 5 -f gfs.json -s vvms_gfs gfs_source.grib
 
