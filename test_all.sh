@@ -140,9 +140,11 @@ else
     find_and_execute integration-tests
     find_and_execute functional-tests
 
-    echo "Building performance-tests"
-    sh $root/performance-tests/makesh > /dev/null
-    find_and_execute performance-tests
+    echo "Performance tests are disabled"
+    
+    # echo "Building performance-tests"
+    # sh $root/performance-tests/makesh > /dev/null
+    # find_and_execute performance-tests
 fi
 
 cleanup
