@@ -86,8 +86,8 @@ else:
 	librarypaths.append(workspace + '/himan-lib/build/debug')
 	librarypaths.append(workspace + '/himan-plugins/build/debug')
 
-librarypaths.append('/usr/gdal34/lib')
-librarypaths.append('/usr/proj82/lib')
+librarypaths.append('/usr/gdal35/lib')
+librarypaths.append('/usr/proj90/lib64')
 librarypaths.append('/usr/lib64')
 librarypaths.append('/usr/lib64/boost169')
 librarypaths.append('/usr/lib64/oracle')
@@ -185,7 +185,7 @@ env.Append(CCFLAGS = cflags)
 env.Append(CCFLAGS = cflags_normal)
 
 env.AppendUnique(CCFLAGS=('-isystem', '/usr/include/boost169'))
-env.AppendUnique(CCFLAGS=('-isystem', '/usr/gdal34/include'))
+env.AppendUnique(CCFLAGS=('-isystem', '/usr/gdal35/include'))
 
 # Linker flags
 
@@ -217,7 +217,7 @@ if os.environ.get('INCLUDEDIR') != None:
 
 env.Append(NVCCPATH = ['./include'])
 env.Append(NVCCPATH = [workspace + '/himan-lib/include']) # cuda-helper
-env.Append(NVCCPATH = ['/usr/gdal34/include'])
+env.Append(NVCCPATH = ['/usr/gdal35/include'])
 
 # Other
 
