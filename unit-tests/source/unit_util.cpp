@@ -163,7 +163,16 @@ BOOST_AUTO_TEST_CASE(FILETYPE)
 BOOST_AUTO_TEST_CASE(GETSCALEDVALUE)
 {
 	auto s = util::GetScaledValue(100.);
-	BOOST_REQUIRE(s.first == 100 && s.second == 0);
+	BOOST_REQUIRE(s.first == 1 && s.second == -2);
+
+	s = util::GetScaledValue(0.);
+	BOOST_REQUIRE(s.first == 0 && s.second == 0);
+
+	s = util::GetScaledValue(74.);
+	BOOST_REQUIRE(s.first == 74 && s.second == 0);
+
+	s = util::GetScaledValue(7010);
+	BOOST_REQUIRE(s.first == 701 && s.second == -1);
 
 	s = util::GetScaledValue(500.1);
 	BOOST_REQUIRE(s.first == 5001 && s.second == -1);
