@@ -3,12 +3,11 @@
     "target_geom_name" : "ECEUR0100",
     "source_producer" : "131,240",
     "target_producer" : "240",
-
     "start_hour" : "1",
     "stop_hour" : "1",
     "step" : "1",
     "file_write" : "multiple",
-    "origintime" : "2018-09-03 00:00:00",
+    "origintime" : "2023-08-14 00:00:00",
     "read_data_from_database": false,
  
     "processqueue" : [
@@ -17,7 +16,7 @@
         "levels" : "0",
         "plugins" : [ {
             "name" : "luatool",
-            "luafile" : [ "scripts/CB-TCU-cloud.lua" ]
+            "luafile" : [ "$HIMAN_SCRIPTS/CB-TCU-cloud.lua" ]
         } ]
     }
     ]
