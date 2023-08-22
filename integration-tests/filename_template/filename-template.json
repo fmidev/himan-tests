@@ -1,24 +1,46 @@
 {
-	"target_geom_name" : "RCR068",
-	"source_producer" : "1",
-	"target_producer" : "230",
-	"hours" : "1",
-	"write_mode" : "single",
-	"origintime" : "2020-03-24 00:00:00",
-	"read_data_from_database" : false,
-	"filename_template" : "test_{producer_id}_{analysis_time:%Y_%m_%d_%H}_{forecast_time:%Y_%m_%d_%H}_step{step:%02h}_{geom_name}_{grid_name}_{grid_ni}x{grid_nj}_{param_name}_{aggregation_name}_{aggregation_duration:%02h}_{processing_type_name}_{processing_type_value}.{processing_type_value2}_{level_name}_{level_value}.{level_value2}_{forecast_type_name}_{forecast_type_value:%05d}.{file_type}",
-
-	"processqueue" : [
-	{
-		"leveltype" : "height",
-		"levels" : "2",
-		"plugins" : [ { "name" : "transformer",
-				"base" : "-273.15",
-				"scale" : "1.0",
-				"source_param" : "T-K",
-                                "target_param" : "T-C",
-                                "source_level_type" : "height",
-                                "source_levels" : "2" }  ]
-	} 
-	]
+  "target_geom_name": "ECEUR0200",
+  "source_producer": "134",
+  "target_producer": "243",
+  "hours": "6",
+  "write_mode": "single",
+  "origintime": "2020-04-28 00:00:00",
+  "read_data_from_database": false,
+  "filename_template": "test_{producer_id}_{analysis_time:%Y_%m_%d_%H}_{forecast_time:%Y_%m_%d_%H}_step{step:%02h}_{geom_name}_{grid_name}_{grid_ni}x{grid_nj}_{param_name}_{aggregation_name}_{aggregation_duration:%02h}_{processing_type_name}_{processing_type_value}.{processing_type_value2}_{level_name}_{level_value}.{level_value2}_{forecast_type_name}_{forecast_type_value:%05d}.{file_type}",
+  "forecast_type": "cf",
+  "processqueue": [
+    {
+      "leveltype": "height",
+      "levels": "2",
+      "plugins": [
+        {
+          "name": "transformer",
+          "target_param": "P-PA",
+          "source_level_type": "ground",
+          "source_levels": "0"
+        },
+        {
+          "name": "transformer",
+          "target_param": "P-PA",
+          "source_level_type": "ground",
+          "source_levels": "0",
+          "filename_template": "test_{wall_time:%Y-%m-%d}.grib"
+        },
+        {
+          "name": "transformer",
+          "target_param": "P-PA",
+          "source_level_type": "ground",
+          "source_levels": "0",
+          "filename_template": "test_{analysis_time:%Y/%m}_{analysis_time:%d}.{file_type}"
+        },
+        {
+          "name": "transformer",
+          "target_param": "P-PA",
+          "source_level_type": "ground",
+          "source_levels": "0",
+          "filename_template": "test_{analysis_time:%Y:%m:%d}{step::%03h}.{file_type}"
+        }
+      ]
+    }
+  ]
 }

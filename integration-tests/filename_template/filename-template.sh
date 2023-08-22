@@ -8,7 +8,7 @@ fi
 
 $HIMAN -d 4 -f filename-template.json -t grib filename-template-source.grib
 
-cnt=$(grib_count test_230_2020_03_24_00_2020_03_24_01_step01_RCR068_rll_1030x816_T-C_unknown_not_a_date_time_unknown_-999.-999_height_2.-999_det_-0999.grib)
+cnt=$(grib_count test_243_2020_04_28_00_2020_04_28_06_step06_ECEUR0200_rll_331x289_P-PA_unknown_not_a_date_time_unknown_-999.-999_height_2.-999_cf_00000.grib)
 
 if [ $cnt -ne 1 ]; then
   echo "filename_template failed"
@@ -17,31 +17,33 @@ fi
 
 $HIMAN -d 4 -f filename-template.json -t querydata filename-template-source.grib
 
-val=$(qdpoint -x 25 -y 60 test_230_2020_03_24_00_2020_03_24_01_step01_RCR068_rll_1030x816_T-C_unknown_not_a_date_time_unknown_-999.-999_height_2.-999_det_-0999.fqd)
+val=$(qdpoint -x 25 -y 60 test_243_2020_04_28_00_2020_04_28_06_step06_ECEUR0200_rll_331x289_P-PA_unknown_not_a_date_time_unknown_-999.-999_height_2.-999_cf_00000.fqd)
 
-if [ "$val" != "202003240300 2.1" ]; then
+if [ "$val" != "202004280900 100762" ]; then
   echo "filename_template failed"
   exit 1
 fi
 
-$HIMAN -d 4 -f filename-template2.json -t grib filename-template-source.grib
+cnt=$(grib_count test_2020/04_28.grib)
 
-cnt=$(grib_count 2020/03_24.grib)
-
-if [ ! -f "2020/03_24.grib" ] || [ $cnt -ne 1 ]; then
+if [ ! -f "test_2020/04_28.grib" ] || [ $cnt -ne 1 ]; then
   echo "filename_template failed"
   exit 1
 fi
 
 date=$(date +%Y-%m-%d)
-cat filename-template.json | jq '.filename_template="{wall_time:%Y-%m-%d}.grib"' | $HIMAN -f -  filename-template-source.grib
 
-if [ ! -f "$date.grib" ]; then
+if [ ! -f "test_$date.grib" ]; then
+  echo "filename_template failed"
+  exit 1
+fi
+
+if [ ! -f "test_2020:04:28:006.grib" ]; then
   echo "filename_template failed"
   exit 1
 fi
 
 echo "filename_template success"
 
-rm -rf 2020
-rm -f test_230*{grib,fqd} $date.grib
+rm -rf test_2020
+rm -f test_*{grib,fqd} test_$date.grib
