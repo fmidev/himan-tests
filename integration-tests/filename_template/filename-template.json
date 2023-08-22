@@ -6,7 +6,7 @@
   "write_mode": "single",
   "origintime": "2020-04-28 00:00:00",
   "read_data_from_database": false,
-  "filename_template": "test_{producer_id}_{analysis_time:%Y_%m_%d_%H}_{forecast_time:%Y_%m_%d_%H}_step{step:%02h}_{geom_name}_{grid_name}_{grid_ni}x{grid_nj}_{param_name}_{aggregation_name}_{aggregation_duration:%02h}_{processing_type_name}_{processing_type_value}.{processing_type_value2}_{level_name}_{level_value}.{level_value2}_{forecast_type_name}_{forecast_type_value:%05d}.{file_type}",
+  "filename_template": "test_{producer_id}_{analysis_time:%Y_%m_%d_%H}_{forecast_time:%Y_%m_%d_%H}_step{step:%02h}_{geom_name}_{grid_name}_{grid_ni}x{grid_nj}_{param_name}_{aggregation_name}_{aggregation_duration:%02h}_{processing_type_name}_{processing_type_value}.{processing_type_value2}_{level_name}_{level_value}.{level_value2}_{forecast_type_name}_{forecast_type_value:%05.0f}.{file_type}",
   "forecast_type": "cf",
   "processqueue": [
     {
