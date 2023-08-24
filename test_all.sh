@@ -101,6 +101,8 @@ function find_and_execute(){
 
 echo "Using himan executable from: $HIMAN"
 echo "==============================================================="
+sh $root/bin/check-for-gpu.sh
+echo "==============================================================="
 
 if [ $# -eq 1 ]; then
     if [ "$1" != "smoke-tests" ] && [ "$1" != "unit-tests" ] && [ "$1" != "integration-tests" ] && [ "$1" != "functional-tests" ] && [ "$1" != "performance-tests" ]; then
