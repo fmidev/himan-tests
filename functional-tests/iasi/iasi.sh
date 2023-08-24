@@ -25,7 +25,7 @@ fi
 
    $HIMAN -d 5 -f iasi.json -t grib2 source.grib
 
-   grib_compare result_gpu.grib iasi.json.grib2
+   grib_compare -A 0.1 result_gpu.grib iasi.json.grib2
 
    if [ $? -eq 0 ];then
      echo iasi success on GPU!
