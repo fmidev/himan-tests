@@ -10,14 +10,7 @@ rm -f CAPE*.grib CIN*grib LFC*grib LCL*grib EL*grib
 
 source_data=cape_ecmwf_mu_source.grib
 
-if [ ! -f "$source_data" ]; then
-  echo "source data not present, copying it"
-  curl https://lake.fmi.fi/himan-tests-source-data/$source_data -o $source_data
-
-  if [ $? -ne 0 ]; then
-    exit 1
-  fi
-fi
+../../bin/download-if-not-exists.sh $source_data
 
 $HIMAN -s no-cuda -d 4 -f ecmwf.json --no-cuda $source_data
 

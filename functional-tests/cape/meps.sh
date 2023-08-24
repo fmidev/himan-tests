@@ -10,14 +10,7 @@ rm -f CAPE*.grib2 CIN*.grib2 LFC*.grib2 LCL*.grib2 EL*.grib2
 
 source_data=cape_meps_mu_source.grib
 
-if [ ! -f "$source_data" ]; then
-  echo "source data not present, copying it"
-  curl https://lake.fmi.fi/himan-tests-source-data/$source_data -o $source_data
-
-  if [ $? -ne 0 ]; then
-    exit 1
-  fi
-fi
+../../bin/download-if-not-exists.sh $source_data
 
 $HIMAN -s no-cuda -d 3 -f meps.json --no-cuda $source_data -t grib2 
 
