@@ -19,7 +19,7 @@ else
   exit 1
 fi
 
-if [ ../../bin/check-for-gpu.sh ]; then
+if ../../bin/check-for-gpu.sh; then
 
   rm -f TPW-K*.grib
 

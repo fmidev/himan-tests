@@ -33,7 +33,7 @@ else
   exit 1
 fi
 
-if [ ../../bin/check-for-gpu.sh ]; then
+if ../../bin/check-for-gpu.sh; then
 
   mv vvms_hl.json.grib vvms_hl.json-CPU.grib
 

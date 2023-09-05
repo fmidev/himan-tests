@@ -28,7 +28,7 @@ else
   exit 1
 fi
 
-if [ ../../bin/check-for-gpu.sh ]; then
+if ../../bin/check-for-gpu.sh; then
 
   mv ./FF-MS_height_10_rll_1030_816_0_006.grib ./FF-MS_height_10_rll_1030_816_0_006-CPU.grib
   mv ./DD-D_height_10_rll_1030_816_0_006.grib ./DD-D_height_10_rll_1030_816_0_006-CPU.grib
@@ -79,7 +79,7 @@ else
   exit 1
 fi
 
-if [ ../../bin/check-for-gpu.sh ]; then
+if ../../bin/check-for-gpu.sh; then
 
   # Do the same test with cuda enabled; since the calculation cannot be made with cuda we must 
   # no the unpacking in cuda but calculation in cpu. results should be identical.

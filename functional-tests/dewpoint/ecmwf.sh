@@ -19,7 +19,7 @@ else
   exit 1
 fi
 
-if [ ../../bin/check-for-gpu.sh ]; then
+if ../../bin/check-for-gpu.sh; then
 
   rm -f TD-K_pressure_700_rll_529_461_0_009.grib
 

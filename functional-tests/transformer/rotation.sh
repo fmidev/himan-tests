@@ -17,7 +17,7 @@ echo rotation success for CPU
 
 set +e
 
-if [ ../../bin/check-for-gpu.sh ]; then
+if ../../bin/check-for-gpu.sh; then
 
   set -e
   rm -f U-MS_hybrid_65_lcc*grib2 V-MS_hybrid_65_lcc*grib2

@@ -22,7 +22,7 @@ fi
 rm -f fog_ecmwf.json.grib fog_ecmwf.json-CPU.grib
 
 exit 0
-# if [ ../../bin/check-for-gpu.sh ]; then
+# if ../../bin/check-for-gpu.sh; then
 
 #   mv fog.json.grib fog.json-CPU.grib
 

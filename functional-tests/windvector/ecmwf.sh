@@ -45,7 +45,7 @@ fi
 #echo "windvector EC on GPU .... SOON"
 #exit 0
 
-if [ ../../bin/check-for-gpu.sh ]; then
+if ../../bin/check-for-gpu.sh; then
 
   rm -f DD-D*.grib FF-MS*.grib DF-MS*.grib
 
