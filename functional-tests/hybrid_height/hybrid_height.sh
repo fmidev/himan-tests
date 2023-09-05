@@ -19,7 +19,7 @@ else
   exit 1
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
   rm -f HL-M_*
 
   $HIMAN -d 5 -f hybrid_height.json -t grib hl_source_geop.grib -s stat

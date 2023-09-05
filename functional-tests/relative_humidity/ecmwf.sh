@@ -19,7 +19,7 @@ else
   exit 1
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
 
 rm -f RH-PRCNT_height_2_rll_233_231_0_006.grib
 

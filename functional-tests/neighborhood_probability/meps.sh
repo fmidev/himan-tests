@@ -21,7 +21,7 @@ else
   exit 1
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
   rm -f *lcc*grib2
 
   $HIMAN -s cuda -d 4 -f meps.json neighborhood_probability_meps_source.grib

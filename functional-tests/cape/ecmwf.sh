@@ -37,7 +37,7 @@ if [ $(echo $HIMAN | grep -c "debug") -gt 0 ]; then
   exit 0
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
 
   rm -f CAPE*.grib CIN*grib LFC*grib LCL*grib EL*grib
 

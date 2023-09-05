@@ -19,7 +19,7 @@ else
   echo relative humidity/gem success on CPU
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
 
   rm -f RH-PRCNT_pressure_700_ll_1500_751_0_006.grib
 

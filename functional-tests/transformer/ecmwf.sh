@@ -20,7 +20,7 @@ else
   exit 1
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
 
   mv tk2tc_ec.json.grib tk2tc_ec.json-CPU.grib
 

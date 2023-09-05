@@ -19,7 +19,7 @@ else
   exit 1
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
 
   rm -f FFG-MS*.grib 
 
@@ -58,7 +58,7 @@ else
   exit 1
 fi
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
 
   rm -f FF-MS*.grib DD-D*grib
 

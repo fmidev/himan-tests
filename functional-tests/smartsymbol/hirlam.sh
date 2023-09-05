@@ -14,7 +14,7 @@ grib_compare SMARTSYMBOL-N_height_0_rll_1030_816_0_001.grib hirlam_result_smarts
 
 echo smartsymbol/hirlam success on CPU!
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
   rm -f WEATHER* SMARTSY* HESSAA*
 
   $HIMAN -d 4 -f hirlam.json hirlam_source.grib

@@ -28,7 +28,7 @@ grib_compare -A 0.1 FF-MS_height_1500_rll_661_576_0_012.grib result_FF-MS_height
 
 echo stability/ec success on CPU
 
-if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+if [ ../../bin/check-for-gpu.sh ]; then
 
   ls | egrep "^[A-Z].*rll_661*" | xargs -d"\n" rm -f
 

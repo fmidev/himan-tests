@@ -22,7 +22,7 @@ fi
 rm -f fog_ecmwf.json.grib fog_ecmwf.json-CPU.grib
 
 exit 0
-# if [ $(/sbin/lsmod | egrep -c "^nvidia") -gt 0 ]; then
+# if [ ../../bin/check-for-gpu.sh ]; then
 
 #   mv fog.json.grib fog.json-CPU.grib
 
