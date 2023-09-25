@@ -65,15 +65,32 @@ BOOST_AUTO_TEST_CASE(INSERT)
 	auto dinfo = CreateInfo<double>();
 
 	c->Insert<double>(dinfo);
-
-	BOOST_REQUIRE(c->Size() == 1);
+	// 10x10 grid in double = 100 * 8 bytes = 800 bytes
+	BOOST_REQUIRE(c->Size() == 800);
 
 	auto finfo = CreateInfo<float>();
 
 	c->Insert<float>(finfo);
 
-	BOOST_REQUIRE(c->Size() == 1);
+	// data in cache is not replaced
+	BOOST_REQUIRE(c->Size() == 800);
 }
+
+BOOST_AUTO_TEST_CASE(REPLACE)
+{
+	auto c = dynamic_pointer_cast<plugin::cache>(plugin_factory::Instance()->Plugin("cache"));
+
+	auto finfo = CreateInfo<float>();
+
+	c->Replace<float>(finfo);
+	BOOST_REQUIRE(c->Size() == 400);
+
+	auto dinfo = CreateInfo<double>();
+
+	c->Replace<double>(dinfo);
+	BOOST_REQUIRE(c->Size() == 800);
+}
+
 
 BOOST_AUTO_TEST_CASE(GET_NO_CONVERSION)
 {
@@ -81,7 +98,7 @@ BOOST_AUTO_TEST_CASE(GET_NO_CONVERSION)
 
 	auto c = dynamic_pointer_cast<plugin::cache>(plugin_factory::Instance()->Plugin("cache"));
 
-	BOOST_REQUIRE(c->Size() == 1);
+	BOOST_REQUIRE(c->Size() == 800);
 
 	auto opts = CreateSearchOptions();
 
@@ -98,7 +115,7 @@ BOOST_AUTO_TEST_CASE(GET_WITH_CONVERSION)
 {
 	auto c = dynamic_pointer_cast<plugin::cache>(plugin_factory::Instance()->Plugin("cache"));
 
-	BOOST_REQUIRE(c->Size() == 1);
+	BOOST_REQUIRE(c->Size() == 800);
 
 	auto opts = CreateSearchOptions();
 
