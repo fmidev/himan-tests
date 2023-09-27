@@ -35,9 +35,12 @@ else:
 	cuda_toolkit_path = os.environ['CUDA_TOOLKIT_PATH']
 
 have_cuda = False
+have_cereal = False
 
 if os.path.isfile(cuda_toolkit_path + '/lib64/libcudart.so'):
 	have_cuda = True
+if os.path.isfile('/usr/include/cereal/cereal.hpp'):
+	have_cereal = True
 
 # Assign compilers
 
@@ -199,6 +202,8 @@ env.Append(CPPDEFINES=['UNIX'])
 
 if have_cuda:
 	env.Append(CPPDEFINES=['HAVE_CUDA'])
+if have_cereal:
+	env.Append(CPPDEFINES=['HAVE_CEREAL'])
 
 # Clean fails without this
 env.Append(NVCCDEFINES = ['HAVE_CUDA'])
