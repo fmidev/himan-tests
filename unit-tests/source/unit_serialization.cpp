@@ -167,6 +167,51 @@ BOOST_AUTO_TEST_CASE(STATION)
 
 	BOOST_REQUIRE(f == newf);
 }
+
+BOOST_AUTO_TEST_CASE(INFO)
+{
+	using namespace himan;
+	forecast_type ftype(kDeterministic);
+	forecast_time ftime(raw_time::Now(), raw_time::Now());
+	param par("T-K");
+	level lev(kHeight, 2);
+
+	auto i = std::make_shared<info<float>>(ftype, ftime, lev, par);
+
+	auto b = make_shared<base<float>>();
+	b->grid = std::make_shared<latitude_longitude_grid>(kBottomLeft, point(0, 0), point(10, 10), 10, 10,
+	                                                    earth_shape<double>());
+	i->Create(b, true);
+
+	const std::string filename("/tmp/test-file.bin");
+	//	std::stringstream ss(stringstream::in | stringstream::out | stringstream::binary);
+
+	{
+		std::ofstream so(filename, std::ios::binary);
+
+		cereal::BinaryOutputArchive oarc(so);
+		oarc(i);
+	}
+
+	auto newi = std::make_shared<info<float>>();
+
+	std::ifstream si(filename, std::ios::binary);
+
+	{
+		cereal::BinaryInputArchive iarc(si);
+		iarc(newi);
+	}
+
+	i->First();
+	newi->First();
+	BOOST_REQUIRE(i->Param() == newi->Param());
+	BOOST_REQUIRE(i->Level() == newi->Level());
+	BOOST_REQUIRE(i->Time() == newi->Time());
+	BOOST_REQUIRE(i->ForecastType() == newi->ForecastType());
+	BOOST_REQUIRE((*i->Grid()) == (*newi->Grid()));
+	BOOST_REQUIRE(i->Data() == newi->Data());
+}
+
 #else
 BOOST_AUTO_TEST_CASE(DUMMY_NO_SERIALIZATION)
 {
