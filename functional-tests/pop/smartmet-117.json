@@ -1,0 +1,26 @@
+{
+  "target_geom_name": "SMARTMETSMALL7500",
+  "source_producer": "181,280",
+  "target_producer": "280",
+  "write_mode": "all",
+  "write_to_database": false,
+  "origintime": "2023-10-04 16:00:00",
+  "filename_template": "{analysis_time:%Y%m%d%H%M}/fc-himan-{analysis_time:%Y%m%d%H%M}+{step:%03hh}.{file_type}",
+  "validate_metadata": false,
+  "processqueue": [
+    {
+      "leveltype": "height",
+      "levels": "0",
+      "plugins": [
+        {
+          "name": "pop",
+          "allowed_missing_values": 0
+        }
+      ]
+    }
+  ],
+  "start_hour": "117",
+  "stop_hour": "117",
+  "step": "3",
+  "forecast_type": "deterministic"
+}
