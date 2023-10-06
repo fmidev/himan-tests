@@ -2,11 +2,11 @@
   "target_geom_name": "SMARTMETSMALL7500",
   "source_producer": "181,280",
   "target_producer": "280",
-  "write_mode": "all",
+  "write_mode": "single",
   "write_to_database": false,
-  "origintime": "2023-10-04 16:00:00",
-  "filename_template": "{analysis_time:%Y%m%d%H%M}/fc-himan-{analysis_time:%Y%m%d%H%M}+{step:%03hh}.{file_type}",
-  "validate_metadata": false,
+  "origintime": "2023-10-06 09:00:00",
+  "read_from_database" : false,
+  
   "processqueue": [
     {
       "leveltype": "height",
