@@ -6,7 +6,7 @@ if [ -z "$HIMAN" ]; then
 	export HIMAN="../../himan"
 fi
 
-rm -f POP-PRCNT*.grib2
+rm -f POP-0TO1*.grib2
 
 $HIMAN -d 5 -j 1 -f smartmet-117.json --no-cuda source-117.grib
 
@@ -18,5 +18,5 @@ else
   echo pop/smartmet-117 failed on CPU
   exit 1
 fi
-rm -f POP-PRCNT*.grib2
+rm -f POP-0TO1*.grib2
 
