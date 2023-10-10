@@ -21,9 +21,9 @@ logger:Info(msg)
 -- EC with level kGround :/
 local lvl = level(HPLevelType.kGround, 0)
 
-local ewss = luatool:Fetch(current_time, lvl, par1)
-local nsss = luatool:Fetch(current_time, lvl, par2)
-local rho = luatool:Fetch(current_time, lvl, par3)
+local ewss = luatool:Fetch(current_time, lvl, par1, current_forecast_type)
+local nsss = luatool:Fetch(current_time, lvl, par2, current_forecast_type)
+local rho = luatool:Fetch(current_time, lvl, par3, current_forecast_type)
 
 local timestepSize = configuration:GetForecastStep():Seconds()
 

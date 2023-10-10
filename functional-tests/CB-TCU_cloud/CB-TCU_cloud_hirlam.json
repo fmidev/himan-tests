@@ -16,7 +16,7 @@
         "levels" : "0",
         "plugins" : [ {
             "name" : "luatool",
-            "luafile" : [ "scripts/CB-TCU-cloud.lua" ]
+            "luafile" : [ "$HIMAN_SCRIPTS/CB-TCU-cloud.lua" ]
         } ]
     }
     ]

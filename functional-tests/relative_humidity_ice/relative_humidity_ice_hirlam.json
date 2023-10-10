@@ -16,7 +16,7 @@
         "levels" : "0",
         "plugins" : [ {
             "name" : "luatool",
-            "luafile" : [ "scripts/relative_humidity_ice.lua" ]
+            "luafile" : [ "$HIMAN_SCRIPTS/relative-humidity-ice.lua" ]
         } ]
     }
     ]

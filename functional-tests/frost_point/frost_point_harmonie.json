@@ -16,7 +16,7 @@
         "levels" : "0",
         "plugins" : [ {
             "name" : "luatool",
-            "luafile" : [ "scripts/frost_point.lua" ]
+            "luafile" : [ "$HIMAN_SCRIPTS/frost-point.lua" ]
         } ]
     }
     ]
