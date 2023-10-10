@@ -1,8 +1,8 @@
 current_time:GetValidDateTime():Adjust(HPTimeResolution.kHourResolution, -3)
-local prev_t = luatool:FetchWithType(current_time, current_level, param("T-K"), current_forecast_type)
+local prev_t = luatool:Fetch(current_time, current_level, param("T-K"), current_forecast_type)
 
 current_time:GetValidDateTime():Adjust(HPTimeResolution.kHourResolution, 6)
-local next_t = luatool:FetchWithType(current_time, current_level, param("T-K"), current_forecast_type)
+local next_t = luatool:Fetch(current_time, current_level, param("T-K"), current_forecast_type)
 
 local res = {}
 

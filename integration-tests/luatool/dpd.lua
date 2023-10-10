@@ -42,8 +42,8 @@ logger:Info(msg)
 -- EC with level kGround :/
 local lvl = level(HPLevelType.kGround, 0)
 
-local t = luatool:Fetch(current_time, lvl, par1)
-local td = luatool:Fetch(current_time, lvl, par2)
+local t = luatool:Fetch(current_time, lvl, par1, current_forecast_type)
+local td = luatool:Fetch(current_time, lvl, par2, current_forecast_type)
 
 if not t or not td then
     print("Data not found")
