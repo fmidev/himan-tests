@@ -1,0 +1,21 @@
+{
+	"target_geom_name" : "ICONEUR00625",
+	"source_producer" : "170,220",
+	"target_producer" : "220",
+	"start_hour" : "1",
+	"stop_hour" : "1",
+	"step" : "1",
+	"write_mode" : "single",
+	"origintime" : "2023-10-12 18:00:00",
+	"read_data_from_database":false,
+	"processqueue" : [
+	{
+        "leveltype" : "height",
+        "levels" : "0",
+        "plugins" : [ {
+            "name" : "luatool",
+            "luafile" : [ "$HIMAN_SCRIPTS/ceiling2.lua" ]
+        } ]
+	} 
+	]
+}
