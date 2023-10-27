@@ -1,7 +1,7 @@
 {
     "target_geom_name" : "MEPS2500D",
     "source_geom_name" : "MEPS2500D",
-    "source_producer" : "8,270",
+    "source_producer" : "7,270",
     "target_producer" : "270",
 	"forecast_type" : "deterministic",
     "start_minute" : "360",
