@@ -12,12 +12,7 @@ fi
 
 root=$PWD
 
-set +u
-if [ -z "$RADON_ACTIVE_CONTAINER" ]; then
-  . $root/bin/database-config.sh
-fi
-
-set -u
+. $root/bin/database-config.sh
 
 LOGDIR=/tmp/$(id -un)
 

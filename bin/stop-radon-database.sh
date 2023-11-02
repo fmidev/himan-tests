@@ -1,9 +1,4 @@
 #!/bin/sh
-
-if [ -n "$RADON_ACTIVE_CONTAINER" ]; then
-  exit 0
-fi
-
 set -ue
 
 os_version=$(grep -oPm1 'release\K\s+\w+' /etc/redhat-release)
