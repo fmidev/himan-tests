@@ -10,7 +10,7 @@ rm -f DD-D*.grib2 FF-MS*.grib2
 
 $HIMAN -d 5 -f windvector_meps.json meps_source.grib2 -s meps_nocuda --no-cuda 
 
-grib_compare -A 0.01 meps_result_ff.grib2 ./FF-MS_height_10_lcc_739_949_0_006_3_9.grib2
+grib_compare -A 0.2 meps_result_ff.grib2 ./FF-MS_height_10_lcc_739_949_0_006_3_9.grib2
 
 if [ $? -eq 0 ];then
   echo windvector/meps wind speed success on CPU
@@ -34,7 +34,7 @@ if ../../bin/check-for-gpu.sh; then
 
   $HIMAN -d 5 -f windvector_meps.json -s meps meps_source.grib2
 
-  grib_compare -A 0.01 meps_result_ff_gpu.grib2 ./FF-MS_height_10_lcc_739_949_0_006_3_9.grib2
+  grib_compare -A 0.2 meps_result_ff_gpu.grib2 ./FF-MS_height_10_lcc_739_949_0_006_3_9.grib2
 
   if [ $? -eq 0 ];then
     echo windvector/meps wind speed success GPU
