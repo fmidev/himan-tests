@@ -61,7 +61,6 @@ INSERT INTO public.param_grib1 VALUES (3655, 230, 1089, 203, 245, 0, NULL, NULL,
 INSERT INTO public.param_grib1 VALUES (3567, 230, 1054, 203, 123, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 VALUES (997, 230, 217, 203, 51, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 VALUES (1001, 230, 439, 203, 52, 0, NULL, NULL, NULL, NULL);
-INSERT INTO public.param_grib1 VALUES (1005, 230, 440, 203, 53, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 VALUES (3569, 230, 711, 203, 240, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 VALUES (1009, 230, 181, 203, 54, 4, NULL, NULL, 'wetodb', '2017-05-17 05:58:50.249819+00');
 INSERT INTO public.param_grib1 VALUES (1013, 230, 182, 203, 55, 4, NULL, NULL, 'wetodb', '2017-05-17 05:58:50.249819+00');
@@ -167,14 +166,12 @@ INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (98, 1, 55, 1, 133, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (103, 1, 54, 1, 132, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (108, 1, 53, 1, 131, 0, NULL, NULL, NULL, NULL);
-INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (113, 1, 62, 1, 223, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (123, 1, 555, 1, 128, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (128, 1, 449, 1, 101, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (138, 1, 447, 1, 102, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (143, 1, 375, 1, 222, 0, NULL, NULL, 'postgres', '2017-01-08 18:27:05.865154+00');
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (203, 1, 318, 1, 117, 4, NULL, NULL, 'postgres', '2017-01-08 18:35:29.820658+00');
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (153, 1, 448, 1, 103, 0, NULL, NULL, NULL, NULL);
-INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (158, 1, 662, 1, 220, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (163, 1, 89, 1, 122, 4, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (173, 1, 162, 1, 17, 0, NULL, NULL, 'postgres', '2017-01-08 18:39:20.361707+00');
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (168, 1, 215, 1, 16, 0, NULL, NULL, 'postgres', '2017-01-08 18:40:21.251019+00');
@@ -220,7 +217,6 @@ INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (403, 1, 217, 1, 66, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (133, 1, 659, 1, 125, 4, NULL, NULL, 'postgres', '2015-05-11 12:59:09.663603+00');
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (408, 1, 655, 1, 67, 0, NULL, NULL, NULL, NULL);
-INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (413, 1, 663, 1, 230, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (418, 1, 438, 1, 71, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (428, 1, 644, 1, 2, 0, NULL, NULL, NULL, NULL);
 INSERT INTO public.param_grib1 (id, producer_id, param_id, table_version, number, timerange_indicator, level_id, level_value, last_updater, last_updated) VALUES (448, 1, 654, 1, 76, 0, NULL, NULL, NULL, NULL);
