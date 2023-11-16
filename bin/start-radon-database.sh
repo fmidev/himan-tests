@@ -60,7 +60,7 @@ $crun run \
 	-e RADON_WETODB_PASSWORD=$RADON_WETODB_PASSWORD \
 	-e RADON_RADON_ADMIN_PASSWORD=$RADON_RADON_ADMIN_PASSWORD \
 	--rm --name=radon-himan-regression-tests-container-$user \
-	$image # > /dev/null
+	$image > /dev/null
 
 set +e
 
@@ -71,6 +71,7 @@ nc -z -w2 localhost $RADON_PORT
 while [ $? -ne 0 ]; do
   if [ $cnt -eq 20 ]; then
     echo "timeout: database did not start"
+    podman logs radon-himan-regression-tests-container-$user
     exit 1
   fi
   sleep 1
@@ -91,6 +92,7 @@ psql -Aqt -c "select now()" > /dev/null 2>&1
 while [ $? -ne 0 ]; do
   if [ $cnt -gt 30 ]; then
     echo "timeout: database did not initialize"
+    podman logs radon-himan-regression-tests-container-$user
     exit 1
   fi
   echo -n "."
