@@ -1,5 +1,5 @@
 #!/bin/sh
-set -uxe
+set -ue
 
 os_version=$(grep -oPm1 'release\K\s+\w+' /etc/redhat-release)
 
@@ -87,7 +87,7 @@ export PGDATABASE=radon
 
 cnt=0
 
-psql -Aqt -c "select now()" # > /dev/null 2>&1
+psql -Aqt -c "select now()" > /dev/null 2>&1
 
 while [ $? -ne 0 ]; do
   if [ $cnt -gt 30 ]; then
@@ -95,10 +95,10 @@ while [ $? -ne 0 ]; do
     podman logs radon-himan-regression-tests-container-$user
     exit 1
   fi
-  #echo -n "."
+  echo -n "."
   sleep 1
   cnt=$((cnt+1))
-  psql -Aqt -c "select now()" # > /dev/null 2>&1
+  psql -Aqt -c "select now()" > /dev/null 2>&1
 done
 
 echo " database up"
