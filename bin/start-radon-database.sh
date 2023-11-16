@@ -60,7 +60,7 @@ $crun run \
 	-e RADON_WETODB_PASSWORD=$RADON_WETODB_PASSWORD \
 	-e RADON_RADON_ADMIN_PASSWORD=$RADON_RADON_ADMIN_PASSWORD \
 	--rm --name=radon-himan-regression-tests-container-$user \
-	$image > /dev/null
+	$image # > /dev/null
 
 set +e
 
