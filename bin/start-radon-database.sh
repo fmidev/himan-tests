@@ -64,10 +64,17 @@ $crun run \
 
 set +e
 
+cnt=0
+
 nc -z -w2 localhost $RADON_PORT
 
 while [ $? -ne 0 ]; do
+  if [ $cnt -eq 20 ]; then
+    echo "timeout: database did not start"
+    exit 1
+  fi
   sleep 1
+  cnt=$((cnt+1))
   nc -z -w2 localhost $RADON_PORT
 done
 
@@ -77,11 +84,18 @@ export PGUSER=radon_admin
 export PGPASSWORD=$RADON_RADON_ADMIN_PASSWORD
 export PGDATABASE=radon
 
+cnt=0
+
 psql -Aqt -c "select now()" > /dev/null 2>&1
 
 while [ $? -ne 0 ]; do
+  if [ $cnt -gt 30 ]; then
+    echo "timeout: database did not initialize"
+    exit 1
+  fi
   echo -n "."
   sleep 1
+  cnt=$((cnt+1))
   psql -Aqt -c "select now()" > /dev/null 2>&1
 done
 
