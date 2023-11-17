@@ -11,41 +11,39 @@ const double kEpsilon = 1e-3;
 
 BOOST_AUTO_TEST_CASE(CENTRAL_DIFFERENCE)
 {
-    // Filter a plane with given filter kernel
-    // Declare matrices
-    himan::matrix<double> A(5,5,1,MissingDouble());
-    himan::matrix<double> B;
-    himan::matrix<double> C;
+	// Filter a plane with given filter kernel
+	// Declare matrices
+	himan::matrix<double> A(5, 5, 1, MissingDouble());
+	himan::matrix<double> B;
+	himan::matrix<double> C;
 
 	// Matrices containing the correct solution
-	himan::matrix<double> D(5,5,1,MissingDouble());
-	himan::matrix<double> E(5,5,1,MissingDouble());
+	himan::matrix<double> D(5, 5, 1, MissingDouble());
+	himan::matrix<double> E(5, 5, 1, MissingDouble());
 
-    // Fill matrix A and solution matrices D and E
-    for(size_t i=0; i < A.Size(); ++i)
-    {
-        A.Set(i, double(i));
-		D.Set(i,1.0/double(1+i/5));
-		E.Set(i,5.0);
-    }
+	// Fill matrix A and solution matrices D and E
+	for (size_t i = 0; i < A.Size(); ++i)
+	{
+		A.Set(i, double(i));
+		D.Set(i, 1.0 / double(1 + i / 5));
+		E.Set(i, 5.0);
+	}
 
-	std::pair<himan::matrix<double>,himan::matrix<double>> grad_A;
+	std::pair<himan::matrix<double>, himan::matrix<double>> grad_A;
 
 	// Declare vectors for grid spacing
-	std::vector<double> dx {1.0,2.0,3.0,4.0,5.0};
-	std::vector<double> dy(5,1.0);
+	std::vector<double> dx{1.0, 2.0, 3.0, 4.0, 5.0};
+	std::vector<double> dy(5, 1.0);
 
-	grad_A = himan::util::CentralDifference(A,dx,dy,true);
+	grad_A = himan::util::CentralDifference(A, dx, dy, true);
 	B = std::get<0>(grad_A);
 	C = std::get<1>(grad_A);
 
-	BOOST_CHECK(B==D && C==E);
-	
-} 
+	BOOST_CHECK(B == D && C == E);
+}
 
 BOOST_AUTO_TEST_CASE(MAKESQLINTERVAL)
 {
-
 	forecast_time f1("2015-01-09 00:00:00", "2015-01-09 12:00:00");
 
 	BOOST_REQUIRE(util::MakeSQLInterval(f1) == "12:00:00");
@@ -84,33 +82,33 @@ BOOST_AUTO_TEST_CASE(EXPAND)
 	expanded = util::Expand(test);
 
 	BOOST_REQUIRE(expanded == "xyz/asdf/123");
-
 }
 
 BOOST_AUTO_TEST_CASE(FLIP)
 {
 	matrix<double> m(6, 6, 1, himan::MissingDouble());
-        double j = 0;
+	double j = 0;
 
-        for (size_t i = 1; i <= m.Size(); i++)
-        {
-                m.Set(i-1, j);
+	for (size_t i = 1; i <= m.Size(); i++)
+	{
+		m.Set(i - 1, j);
 
-                if (i % m.SizeY() == 0) j++;
-        }
+		if (i % m.SizeY() == 0)
+			j++;
+	}
 
-        BOOST_REQUIRE(m.At(0) == 0);
-        BOOST_REQUIRE(m.At(35) == 5);
+	BOOST_REQUIRE(m.At(0) == 0);
+	BOOST_REQUIRE(m.At(35) == 5);
 
-        util::Flip(m);
+	util::Flip(m);
 
-        BOOST_REQUIRE(m.At(0) == 5);
-        BOOST_REQUIRE(m.At(35) == 0);
+	BOOST_REQUIRE(m.At(0) == 5);
+	BOOST_REQUIRE(m.At(35) == 0);
 
-        util::Flip(m);
+	util::Flip(m);
 
-        BOOST_REQUIRE(m.At(0) == 0);
-        BOOST_REQUIRE(m.At(35) == 5);
+	BOOST_REQUIRE(m.At(0) == 0);
+	BOOST_REQUIRE(m.At(35) == 5);
 }
 
 BOOST_AUTO_TEST_CASE(FILETYPE)
@@ -188,4 +186,95 @@ BOOST_AUTO_TEST_CASE(GETSCALEDVALUE)
 
 	s = util::GetScaledValue(-13.44);
 	BOOST_REQUIRE(s.first == -1344 && s.second == -2);
+}
+
+BOOST_AUTO_TEST_CASE(GETAGGREGATIONFROMPARAMNAME)
+{
+	std::string name;
+	forecast_time ftime("2023-10-25 00:00:00", "2023-10-25 06:00:00");
+
+	name = "RR-KGM2";
+	aggregation a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == ftime.Step(),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "RRR-KGM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == ONE_HOUR,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "RR-12-KGM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == TWELVE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "SN-3-MM";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == THREE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "RRRS-KGM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == ONE_HOUR,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "PREC7D-KGM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == time_duration("168:00:00"),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "FFG-MS";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kMaximum && a.TimeDuration() == ONE_HOUR,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "FFG2-MS";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kUnknownAggregationType,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "FFG3H-MS";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kMaximum && a.TimeDuration() == THREE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "TMAX3H-K";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kMaximum && a.TimeDuration() == THREE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "TMIN12H-C";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kMinimum && a.TimeDuration() == TWELVE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "TMIN-K";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kMinimum && a.TimeDuration() == ONE_HOUR,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "POTMAX24H-PRCNT";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kMaximum && a.TimeDuration() == time_duration("24:00:00"),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "MAXHGT-KM";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kUnknownAggregationType && a.TimeDuration().Empty(),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "PROB-RR12-1";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == TWELVE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "PROB-SN3-1";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == THREE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "UVIMAX-N";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kUnknownAggregationType,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
 }
