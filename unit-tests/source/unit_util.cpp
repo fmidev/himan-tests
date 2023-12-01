@@ -263,9 +263,19 @@ BOOST_AUTO_TEST_CASE(GETAGGREGATIONFROMPARAMNAME)
 	BOOST_REQUIRE_MESSAGE(a.Type() == kUnknownAggregationType && a.TimeDuration().Empty(),
 	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
 
+	name = "PROB-RR-4";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kUnknownAggregationType && a.TimeDuration().Empty(),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
 	name = "PROB-RR12-1";
 	a = util::GetAggregationFromParamName(name, ftime);
 	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == TWELVE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "PROB-CONV-RR3-3";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == THREE_HOURS,
 	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
 
 	name = "PROB-SN3-1";
