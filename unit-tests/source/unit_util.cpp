@@ -84,6 +84,49 @@ BOOST_AUTO_TEST_CASE(EXPAND)
 	BOOST_REQUIRE(expanded == "xyz/asdf/123");
 }
 
+BOOST_AUTO_TEST_CASE(EXPAND_STRING)
+{
+	std::string str = "1,3,6";
+	auto splt = util::ExpandString(str);
+	BOOST_REQUIRE(splt.size() == 3);
+	str = "1,3-6";
+	splt = util::ExpandString(str);
+	BOOST_REQUIRE(splt.size() == 5);
+	BOOST_REQUIRE(splt[3] == 5);
+	str = "3-9-3";
+	splt = util::ExpandString(str);
+	BOOST_REQUIRE(splt.size() == 3);
+	BOOST_REQUIRE(splt[2] == 9);
+	str = "9-3-3";
+	splt = util::ExpandString(str);
+	BOOST_REQUIRE(splt.size() == 3);
+	BOOST_REQUIRE(splt[2] == 3);
+
+}
+
+BOOST_AUTO_TEST_CASE(EXPAND_TIMEDURATION)
+{
+	std::string str = "1:00:00,3:00:00,6:00:00";
+	auto splt = util::ExpandTimeDuration(str);
+	BOOST_REQUIRE(splt.size() == 3);
+	str = "1:00:00,3:00:00-6:00:00";
+	splt = util::ExpandTimeDuration(str);
+	BOOST_REQUIRE(splt.size() == 5);
+	BOOST_REQUIRE(splt[3].String("%h:%02M:%02S") == "5:00:00");
+	str = "3:00:00-9:00:00-3:00:00";
+	splt = util::ExpandTimeDuration(str);
+	BOOST_REQUIRE(splt.size() == 3);
+	BOOST_REQUIRE(splt[2].String("%h:%02M:%02S") == "9:00:00");
+	str = "9:00:00-3:00:00-3:00:00";
+	splt = util::ExpandTimeDuration(str);
+	BOOST_REQUIRE(splt.size() == 3);
+	BOOST_REQUIRE(splt[2].String("%h:%02M:%02S") == "3:00:00");
+	str = "0:00:00-1:00:00-0:15:00";
+	splt = util::ExpandTimeDuration(str);
+	BOOST_REQUIRE(splt.size() == 5);
+	BOOST_REQUIRE(splt[2].String("%h:%02M:%02S") == "0:30:00");
+}
+
 BOOST_AUTO_TEST_CASE(FLIP)
 {
 	matrix<double> m(6, 6, 1, himan::MissingDouble());
