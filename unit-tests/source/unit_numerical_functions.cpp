@@ -94,7 +94,8 @@ BOOST_AUTO_TEST_CASE(PROB2D)
 
 	auto result = numerical_functions::Reduce2D(
 	    A, B,
-	    [=](double& val1, double& val2, const double& a, const double& b) {
+	    [=](double& val1, double& val2, const double& a, const double& b)
+	    {
 		    if (IsValid(a * b) && a * b == limit)
 			    val1 += 1;
 	    },
@@ -218,4 +219,30 @@ BOOST_AUTO_TEST_CASE(LINSPACE)
 	BOOST_REQUIRE(ret[0][0] == 2.0);
 	BOOST_CHECK_CLOSE(ret[0][1], 4.6666, 0.01);
 	BOOST_CHECK_CLOSE(ret[0][2], 7.3333, 0.01);
+}
+
+BOOST_AUTO_TEST_CASE(NEAREST_POINT)
+{
+	const double X1 = 5, X2 = 10, Y1 = 100, Y2 = 200;
+	namespace nfi = numerical_functions::interpolation;
+
+	auto res = nfi::NearestPoint(8., X1, X2, Y1, Y2);
+	BOOST_REQUIRE_MESSAGE(res == 200, "Expected 200, got " << res);
+	res = nfi::NearestPoint(5., X1, X2, Y1, Y2);
+	BOOST_REQUIRE_MESSAGE(res == 100, "Expected 100, got " << res);
+	res = nfi::NearestPoint(0.1, Y1, Y2);
+	BOOST_REQUIRE_MESSAGE(res == 100, "Expected 100, got " << res);
+	res = nfi::NearestPoint(0.9, Y1, Y2);
+	BOOST_REQUIRE_MESSAGE(res == 200, "Expected 200, got " << res);
+}
+
+BOOST_AUTO_TEST_CASE(LINEARANGLE)
+{
+	namespace nfi = numerical_functions::interpolation;
+	std::cout << nfi::LinearAngle(0.5, 350., 10.) << "\n";
+	BOOST_REQUIRE(nfi::LinearAngle(15., 10., 20., 100., 120.) == 110.);
+	BOOST_REQUIRE(nfi::LinearAngle(0.0, 90., 270.) == 90.0);
+	BOOST_REQUIRE(nfi::LinearAngle(0.8, 200., 0.) == 328.0);
+	BOOST_REQUIRE(nfi::LinearAngle(0.5, 350., 10.) == 0.0);
+	BOOST_REQUIRE(nfi::LinearAngle(0.2, 90., 340.) == 68.0);
 }
