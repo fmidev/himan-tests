@@ -101,7 +101,6 @@ BOOST_AUTO_TEST_CASE(EXPAND_STRING)
 	splt = util::ExpandString(str);
 	BOOST_REQUIRE(splt.size() == 3);
 	BOOST_REQUIRE(splt[2] == 3);
-
 }
 
 BOOST_AUTO_TEST_CASE(EXPAND_TIMEDURATION)
@@ -279,6 +278,11 @@ BOOST_AUTO_TEST_CASE(GETAGGREGATIONFROMPARAMNAME)
 	name = "FFG3H-MS";
 	a = util::GetAggregationFromParamName(name, ftime);
 	BOOST_REQUIRE_MESSAGE(a.Type() == kMaximum && a.TimeDuration() == THREE_HOURS,
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "WGU-MS";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kMaximum && a.TimeDuration() == ONE_HOUR,
 	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
 
 	name = "TMAX3H-K";
