@@ -12,7 +12,7 @@ msgno=$(echo $str | cut -d ',' -f 2)
 offset=$(echo $str | cut -d ',' -f 3)
 length=$(echo $str | cut -d ',' -f 4)
 
-result=$(grib_get -p shortName,level,maximum -w count=$(echo $msgno+1 | bc) $file)
+result=$(grib_get -p shortName,level,maximum -w count=$(($msgno+1)) $file)
 
 if [ "$result" != "wdir 500 360" ]; then
   echo "failed"

@@ -3,7 +3,7 @@ export RADON_HOSTNAME=localhost
 # set port to 5432
 set +u
 if [ -z "$container" ] && [ ! -f "/.dockerenv" ]; then
-  export RADON_PORT=$(echo 10000+$(id -u)|bc)
+  export RADON_PORT=$((10000 + $(id -u)))
 else
   export RADON_PORT=5432
 fi

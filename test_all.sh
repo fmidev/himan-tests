@@ -64,7 +64,7 @@ function find_and_execute(){
         ret=$?
         stoptime=$(date +%s%N)
  
-        duration=$(echo "($stoptime - $starttime) / 1000000" | bc)
+        duration=$((($stoptime - $starttime) / 1000000))
         if [ $ret -ne 0 ]; then
             RESULT="[${txtred}FAILED${txtrst}]"
         else
@@ -75,16 +75,16 @@ function find_and_execute(){
 
         if [ $ret -ne 0 ]; then
             cat $LOGFILE
-            failed=$(echo 1+$failed|bc)
+	    failed=$((1+$failed))
             failed_tests="$failed_tests $f"
         else
-            succeeded=$(echo 1+$succeeded|bc)
+            succeeded=$((1+$succeeded))
         fi
         rm -f $LOGFILE
     done
 
-    total=$(echo $failed+$succeeded|bc)
-    prcnt=$(echo "100*$succeeded/$total"|bc)
+    total=$((failed+$succeeded))
+    prcnt=$((100*$succeeded/$total))
 
     echo "summary: $succeeded/$total tests succeeded ($prcnt %)"
 
