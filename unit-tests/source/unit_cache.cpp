@@ -16,6 +16,11 @@ using namespace std;
 using namespace himan;
 using namespace himan::plugin;
 
+grid* CreateGrid()
+{
+	return new latitude_longitude_grid(kBottomLeft, point(20, 50), point(25, 70), 10, 10, earth_shape<double>());
+}
+
 template <typename T>
 shared_ptr<info<T>> CreateInfo()
 {
@@ -23,8 +28,6 @@ shared_ptr<info<T>> CreateInfo()
 
 	const size_t ni = 10, nj = 10;
 
-	auto grid =
-	    make_shared<latitude_longitude_grid>(kBottomLeft, point(20, 50), point(25, 70), ni, nj, earth_shape<double>());
 	auto _info =
 	    make_shared<info<T>>(forecast_type(kDeterministic), forecast_time("2014-04-04 00:00:00", "2014-04-04 01:00:00"),
 	                         level(kHeight, 2, "Height"), param("TestParam", 12));
@@ -32,7 +35,7 @@ shared_ptr<info<T>> CreateInfo()
 	_info->Producer(producer(230));
 
 	auto b = make_shared<base<T>>();
-	b->grid = grid;
+	b->grid = shared_ptr<grid>(CreateGrid());
 	b->data = matrix<T>(ni, nj, 1, MissingValue<T>(), MissingValue<T>());
 
 	for (size_t i = 1; i < ni * nj; i++)
@@ -53,6 +56,7 @@ search_options CreateSearchOptions()
 	forecast_time ft("2014-04-04 00:00:00", "2014-04-04 01:00:00");
 	producer pr(230);
 	auto conf = make_shared<plugin_configuration>();
+	conf->BaseGrid(unique_ptr<grid>(CreateGrid()));
 	search_options opts(ft, p, l, pr, fty, conf);
 
 	return opts;
@@ -90,7 +94,6 @@ BOOST_AUTO_TEST_CASE(REPLACE)
 	c->Replace<double>(dinfo);
 	BOOST_REQUIRE(c->Size() == 800);
 }
-
 
 BOOST_AUTO_TEST_CASE(GET_NO_CONVERSION)
 {
