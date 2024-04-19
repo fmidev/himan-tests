@@ -66,7 +66,7 @@ set +e
 
 cnt=0
 
-nc -z -w2 localhost $RADON_PORT
+nc -z -w2 localhost $RADON_PORT > /dev/null 2>&1
 
 while [ $? -ne 0 ]; do
   if [ $cnt -eq 20 ]; then
@@ -76,7 +76,7 @@ while [ $? -ne 0 ]; do
   fi
   sleep 1
   cnt=$((cnt+1))
-  nc -z -w2 localhost $RADON_PORT
+  nc -z -w2 localhost $RADON_PORT > /dev/null 2>&1
 done
 
 export PGHOST=$RADON_HOSTNAME
