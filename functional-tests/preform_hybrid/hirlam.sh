@@ -6,7 +6,7 @@ if [ -z "$HIMAN" ]; then
 	export HIMAN="../../himan-bin/himan"
 fi
 
-rm -f PREC*grib
+rm -f PRECFORM2-N_height_0_rll_1030_816_0_015.grib
 
 source_data=preform_hybrid_hirlam_source.grib
 
@@ -23,4 +23,4 @@ else
   echo preform_hybrid/hirlam success on CPU
 fi
 
-rm -f PREC*grib*
+rm -f PRECFORM2-N_height_0_rll_1030_816_0_015.grib

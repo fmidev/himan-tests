@@ -6,7 +6,7 @@ if [ -z "$HIMAN" ]; then
 	export HIMAN="../../himan-bin/himan"
 fi
 
-rm -f PREC*grib*
+rm -f PRECFORM2*lcc*grib2
 
 source_data=preform_hybrid_meps_source.grib
 
@@ -23,5 +23,4 @@ else
   echo preform_hybrid/meps success on CPU
 fi
 
-rm -f PREC*grib*
-
+rm -f PRECFORM2*lcc*grib2

@@ -6,7 +6,7 @@ if [ -z "$HIMAN" ]; then
 	export HIMAN="../../himan-bin/build/release/himan"
 fi
 
-rm -f PRECFORM*.grib
+rm -f PRECFORM2-N_height_0_rll_661_576_0_003.grib
 
 source_data=preform_hybrid_ecmwf_source.grib
 
@@ -23,4 +23,4 @@ else
   exit 1
 fi
 
-rm -f PREC*grib*
+rm -f PRECFORM2-N_height_0_rll_661_576_0_003.grib
