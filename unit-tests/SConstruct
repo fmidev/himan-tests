@@ -93,7 +93,6 @@ librarypaths.append('/usr/gdal35/lib')
 librarypaths.append('/usr/proj90/lib64')
 librarypaths.append('/usr/lib64')
 librarypaths.append('/usr/lib64/boost169')
-librarypaths.append('/usr/lib64/oracle')
 
 if have_cuda:
 	librarypaths.append(cuda_toolkit_path + '/lib64')
@@ -112,10 +111,7 @@ libraries.append('fetcher')
 libraries.append('querydata')
 
 libraries.append('fmidb')
-libraries.append('clntsh')
-libraries.append('odbc')
 libraries.append('pqxx')
-libraries.append('nnz11')
 libraries.append('jasper')
 
 if have_cuda:
