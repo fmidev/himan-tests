@@ -334,4 +334,31 @@ BOOST_AUTO_TEST_CASE(GETAGGREGATIONFROMPARAMNAME)
 	a = util::GetAggregationFromParamName(name, ftime);
 	BOOST_REQUIRE_MESSAGE(a.Type() == kUnknownAggregationType,
 	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "RADGLOCA-JM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == ftime.Step(),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "RTOPSWA-JM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == ftime.Step(),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "RNETLWA-JM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAccumulation && a.TimeDuration() == ftime.Step(),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "RNETLW-WM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAverage && a.TimeDuration() == ftime.Step(),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+	name = "RADGLO-WM2";
+	a = util::GetAggregationFromParamName(name, ftime);
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAverage && a.TimeDuration() == ftime.Step(),
+	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
+
+
 }
