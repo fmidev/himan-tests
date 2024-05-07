@@ -352,12 +352,12 @@ BOOST_AUTO_TEST_CASE(GETAGGREGATIONFROMPARAMNAME)
 
 	name = "RNETLW-WM2";
 	a = util::GetAggregationFromParamName(name, ftime);
-	BOOST_REQUIRE_MESSAGE(a.Type() == kAverage && a.TimeDuration() == ftime.Step(),
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAverage && a.TimeDuration().Empty(),
 	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
 
 	name = "RADGLO-WM2";
 	a = util::GetAggregationFromParamName(name, ftime);
-	BOOST_REQUIRE_MESSAGE(a.Type() == kAverage && a.TimeDuration() == ftime.Step(),
+	BOOST_REQUIRE_MESSAGE(a.Type() == kAverage && a.TimeDuration().Empty(),
 	                      name << " failed with aggregation type " << a.Type() << " time period " << a.TimeDuration());
 
 
