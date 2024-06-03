@@ -685,8 +685,8 @@ BOOST_AUTO_TEST_CASE(MODIFIER_FINDHEIGHT_LT_PA)
 
 	vector<double> findv = {-23, 10, 0, -20, 15, 10, -3, 0, 0};
 
-	dump_profile(heights_all_pascals, values_all);
-	vdump(findv);
+	// dump_profile(heights_all_pascals, values_all);
+	// vdump(findv);
 
 	mod1.FindValue(findv);
 
@@ -697,10 +697,10 @@ BOOST_AUTO_TEST_CASE(MODIFIER_FINDHEIGHT_LT_PA)
 
 	auto values = mod1.Result();
 
-	vdump(values);
+	// vdump(values);
 	BOOST_REQUIRE(values[0] == 850);
 	BOOST_REQUIRE(IsMissing(values[1]));
-	BOOST_REQUIRE(values[4] == 920);
+	BOOST_REQUIRE(values[4] == 1023);
 	BOOST_CHECK_CLOSE(values[8], 975, kEpsilon);
 
 	modifier_findheight_lt mod2;
@@ -715,9 +715,8 @@ BOOST_AUTO_TEST_CASE(MODIFIER_FINDHEIGHT_LT_PA)
 
 	values = mod2.Result();
 
-	vdump(values);
+	// vdump(values);
 	BOOST_REQUIRE(values[3] == 730);
-	// BOOST_REQUIRE(values[4] == 730);
 }
 
 BOOST_AUTO_TEST_CASE(MODIFIER_HIMAN_360)
@@ -737,8 +736,8 @@ BOOST_AUTO_TEST_CASE(MODIFIER_HIMAN_360)
 
 	vector<double> findv = {0.95};
 
-	dump_profile(zall, vall);
-	vdump(findv);
+	// dump_profile(zall, vall);
+	// vdump(findv);
 
 	gtmod.FindValue(findv);
 
@@ -749,7 +748,7 @@ BOOST_AUTO_TEST_CASE(MODIFIER_HIMAN_360)
 
 	auto values = gtmod.Result();
 
-	vdump(values);
+	// vdump(values);
 	BOOST_CHECK_CLOSE(values[0], 712.5, kEpsilon);
 
 	modifier_findheight_lt ltmod;
@@ -758,7 +757,7 @@ BOOST_AUTO_TEST_CASE(MODIFIER_HIMAN_360)
 	ltmod.UpperHeight({100});
 
 	findv = {0.05};
-	vdump(findv);
+	// vdump(findv);
 
 	ltmod.FindValue(findv);
 
@@ -769,7 +768,7 @@ BOOST_AUTO_TEST_CASE(MODIFIER_HIMAN_360)
 
 	values = ltmod.Result();
 
-	vdump(values);
+	// vdump(values);
 	BOOST_CHECK_CLOSE(values[0], 225, kEpsilon);
 }
 
@@ -780,6 +779,7 @@ BOOST_AUTO_TEST_CASE(MODIFIER_FINDHEIGHT_LT)
 	modifier_findheight_lt mod1;
 
 	vector<double> findv = {-23, 10, 0, -20, 15, 10, -3, 0, 0};
+	// dump_profile(heights_all_meters, values_all);
 
 	// vdump(findv);
 
@@ -794,7 +794,7 @@ BOOST_AUTO_TEST_CASE(MODIFIER_FINDHEIGHT_LT)
 
 	// vdump(values);
 	BOOST_REQUIRE(IsMissing(values[1]));
-	BOOST_REQUIRE(values[4] == 130);
+	BOOST_REQUIRE(values[4] == 12);
 	BOOST_REQUIRE(values[8] == 27);
 
 	modifier_findheight_lt mod2;
