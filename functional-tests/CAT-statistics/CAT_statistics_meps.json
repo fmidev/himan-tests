@@ -1,0 +1,33 @@
+{
+    "target_geom_name": "MEPS2500D",
+    "source_geom_name": "MEPS2500D",
+    "source_producer": "4,260",
+    "target_producer": "260",
+
+    "start_hour" : "1",
+    "stop_hour" : "1",
+    "step" : "1",
+    "write_mode" : "all",
+    "origintime" : "2024-06-03 00:00:00",
+    "read_data_from_database": false,
+    "forecast_type" : "cf",
+    "file_type" : "grib2",
+ 
+    "processqueue" : [
+    {
+        "leveltype" : "hybrid",
+        "levels" : "1,2",
+        "write_mode" : "no",
+        "plugins" : [ {"name" : "transformer", "target_param" : "TI2-S2", "source_level_values" : "3,3", "target_level_values" : "1,2"}]
+    },
+
+    {
+        "leveltype" : "height",
+        "levels" : "0",
+        "plugins" : [ {
+            "name" : "luatool",
+            "luafile" : [ "$HIMAN_SCRIPTS/CAT-statistics.lua" ]
+        } ]
+    }
+    ]
+}
