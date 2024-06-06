@@ -17,7 +17,7 @@ fi
 sed -e 's/ALLOWED/100/g' allowed_missing.json > test.json
 $HIMAN -d 5 -f test.json --no-cuda bbox.grib -s
 
-if [ $? -ne 1 ];then
+if [ $? -ne 134 ];then
   echo allowed_missing failed
   exit 1
 fi
