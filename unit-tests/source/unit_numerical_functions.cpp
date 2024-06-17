@@ -246,3 +246,36 @@ BOOST_AUTO_TEST_CASE(LINEARANGLE)
 	BOOST_REQUIRE(nfi::LinearAngle(0.5, 350., 10.) == 0.0);
 	BOOST_REQUIRE(nfi::LinearAngle(0.2, 90., 340.) == 68.0);
 }
+
+BOOST_AUTO_TEST_CASE(RAMP)
+{
+	double lower = 1., upper = 10.;
+	std::vector<double> values = {0, 1., 3., 10., 14., MissingValue<double>()};
+
+	auto ret = numerical_functions::RampUp(lower, upper, values);
+
+	BOOST_REQUIRE(ret[0] == 0.0);
+	BOOST_REQUIRE(ret[1] == 0.0);
+	BOOST_CHECK_CLOSE(ret[2], 0.22222, 0.1);
+	BOOST_REQUIRE(ret[3] == 1.0);
+	BOOST_REQUIRE(ret[4] == 1.0);
+	BOOST_REQUIRE(IsMissing(ret[5]));
+
+	ret = numerical_functions::RampDown(lower, upper, values);
+
+	BOOST_REQUIRE(ret[0] == 1.0);
+	BOOST_REQUIRE(ret[1] == 1.0);
+	BOOST_CHECK_CLOSE(ret[2], 0.77777, 0.01);
+	BOOST_REQUIRE(ret[3] == 0.0);
+	BOOST_REQUIRE(ret[4] == 0.0);
+	BOOST_REQUIRE(IsMissing(ret[5]));
+
+	std::vector<double> lowers {0., 1., -1., -5, MissingValue<double>(), 0. };
+	std::vector<double> uppers {10., 4., 1., -2, 4, 1. };
+
+	ret = numerical_functions::RampUp(lowers, uppers, values);
+
+	BOOST_REQUIRE(IsMissing(ret[4]));
+	BOOST_REQUIRE(IsMissing(ret[5]));
+
+}
