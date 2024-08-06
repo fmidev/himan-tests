@@ -1,0 +1,27 @@
+{
+  "target_geom_name": "MEPS2500D",
+  "source_geom_name": "MEPS2500D",
+  "source_producer": "4,260",
+  "target_producer": "260",
+  "origintime": "2024-08-06 03:00:00",
+  "write_to_database": false,
+  "read_from_database": false,
+  "write_mode": "all",
+  "filename_template": "meps-preform-summer.{file_type}",
+  "processqueue": [
+    {
+      "leveltype": "height",
+      "levels": "0",
+      "plugins": [
+        {
+          "name": "preform_hybrid",
+          "potential_precipitation_form": false
+        }
+      ]
+    }
+  ],
+  "start_hour": "2",
+  "stop_hour": "2",
+  "step": "1",
+  "forecast_type": "cf"
+}
