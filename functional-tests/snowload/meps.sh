@@ -10,7 +10,7 @@ rm -f snowload_meps.json.grib
 
 $HIMAN -d 4 -f snowload_meps.json -t grib source.grib
 
-grib_compare snowload_meps.json.grib result.grib2
+grib_compare -b referenceValue snowload_meps.json.grib result.grib2
 if [ $? -eq 0 ];then
   echo snowload/meps success on CPU!
 else
