@@ -9,13 +9,12 @@ fi
 rm -f ecmwf.json.fqd ecmwf-global.json.fqd
 
 export MASALA_PROCESSED_DATA_BASE=$PWD
-export MASALA_REF_BASE=$MASALA_PROCESSED_DATA_BASE
+export MASALA_RAW_DATA_BASE=$MASALA_PROCESSED_DATA_BASE
 export PGPASSWORD=$RADON_WETODB_PASSWORD
 export PGHOST=$RADON_HOSTNAME
 export PGUSER=radon_admin
 export PGDATABASE=radon
 export PGPORT=$RADON_PORT
-export RADON_REF_BASE=.
 
 if [ $(echo $RADON_HOSTNAME | grep -c "radondb") -gt 0 ]; then
   echo "attempting to access production database"
