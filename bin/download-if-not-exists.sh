@@ -8,14 +8,17 @@ if [ ! -f "$data" ]; then
   url=https://lake.fmi.fi/himan-tests-source-data/$data
   s3_size=$(curl -sI $url | grep -i Content-Length | awk '{print $2}' | tr -cd '[:print:]')
 
+  set +e
   curl --retry 1 --keepalive-time 2 $url -o $data
 
+  ret=$?
   file_size=$(stat -c %s $data)
 
   if [ $? -ne 0 ] || [ $file_size -ne $s3_size ] ; then
     # retry
     echo "Download failed, retrying"
     rm -f $data
+    set -e
     curl --retry 1 --keepalive-time 2 $url -o $data
   fi
 fi
