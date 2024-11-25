@@ -1,0 +1,23 @@
+{
+    "source_geom_name" : "SMARTMET2500,MEPS2500D,ECGLO0100,ECEUR0100,SMARTMET11000",
+    "target_geom_name" : "SMARTMET2500",
+    "source_producer" : "287,4,260,131,240",
+    "target_producer" : "287",
+    "origintime": "latest",
+    "start_hour": "1",
+    "stop_hour": "66",
+    "step": "1",
+    "read_data_from_database": true,
+    "write_data_to_database": false,
+ 
+    "processqueue" : [
+    {
+        "leveltype" : "height",
+        "levels" : "0",
+        "plugins" : [ {
+            "name" : "luatool",
+            "luafile" : [ "$HIMAN_SCRIPTS/traffic_weather_warning.lua" ]
+        } ]
+    }
+    ]
+}
