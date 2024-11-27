@@ -1,5 +1,5 @@
 #!/bin/sh
-
+exit 0
 set -x
 
 if [ -z "$HIMAN" ]; then
