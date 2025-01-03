@@ -13,7 +13,7 @@
         "levels" : "0",
         "plugins" : [ {
             "name" : "luatool",
-            "luafile" : [ "$HIMAN_SCRIPTS/precipitation-type-check.lua" ]
+            "luafile" : [ "$HIMAN_SCRIPTS/precipitation-form-fix.lua" ]
         } ]
     }
     ]
