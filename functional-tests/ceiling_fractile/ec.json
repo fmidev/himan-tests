@@ -2,7 +2,7 @@
     "source_geom_name" : "ECEUR0200",
     "target_geom_name" : "ECEUR0100",
     "source_producer" : "243",
-    "target_producer" : "243",
+    "target_producer" : "242",
     "origintime": "2025-01-06 12:00:00",
     "start_hour": "6",
     "stop_hour": "6",
