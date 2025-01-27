@@ -12,7 +12,7 @@ source_data=ceiling_fractile_meps_source.grib
 
 $HIMAN -d 4 -f meps.json $source_data -s stat --no-cuda
 
-grib_compare fc202501070600+006h00m.grib result_meps.grib
+grib_compare fc202501070600+006h00m.grib2 result_meps.grib2
 
 if [ $? -ne 0 ];then
   echo ceiling fractile/meps failed on CPU
@@ -20,5 +20,5 @@ if [ $? -ne 0 ];then
 fi
 
 echo ceiling fractile/meps success on CPU
-rm -f *m.grib
+rm -f *m.grib2
 rm -f ceiling_fractile_meps_source.grib
