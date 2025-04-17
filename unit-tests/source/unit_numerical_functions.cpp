@@ -279,3 +279,14 @@ BOOST_AUTO_TEST_CASE(RAMP)
 	BOOST_REQUIRE(IsMissing(ret[5]));
 
 }
+
+BOOST_AUTO_TEST_CASE(MEDIAN)
+{
+	std::vector<double> values {1., 2., 3., 4., 5., 3., 0.};
+
+	BOOST_REQUIRE(numerical_functions::Median(values) == 3.0);
+
+	values.push_back(0.);
+	BOOST_REQUIRE(numerical_functions::Median(values) == 2.5);
+
+}
