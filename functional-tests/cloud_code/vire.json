@@ -1,0 +1,27 @@
+{
+    "source_geom_name" : "MEPS2500D,ECGLO0100,ECEUR0100,SMARTMET11000",
+    "target_geom_name" : "MEPS2500D",
+    "source_producer" : "242,131,260,4",
+    "target_producer" : "287",
+    "origintime": "2025-04-04 00:00:00",
+    "file_type": "grib2",
+    "start_hour": "6",
+    "stop_hour": "6",
+    "step": "1",
+    "read_data_from_database": false,
+    "write_data_to_database": false,
+    "validate_metadata": true,
+    "processqueue" : [
+    {
+        "leveltype" : "height",
+        "levels" : "0",
+        "plugins" : [ {
+            "name" : "luatool",
+            "luafile" : [ "$HIMAN_SCRIPTS/cloud-consensus.lua"],
+            "disable_meps": "false",
+            "origin_time_test": "2025-04-04 00:00:00"
+        } ]
+    }
+    ]
+}
+
