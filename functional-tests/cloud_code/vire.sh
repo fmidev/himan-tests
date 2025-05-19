@@ -6,9 +6,13 @@ fi
 
 rm -f fc*.grib
 
-$HIMAN -d 4 -f vire.json source_vire.grib -s stat --no-cuda
+source_data=cloud_consensus_vire_source.grib
+../../bin/download-if-not-exists.sh $source_data
 
-grib_compare fc202504040000+006h00m.grib2 result_vire.grib2
+
+$HIMAN -d 4 -f vire.json $source_data -s stat --no-cuda
+
+grib_compare fc202505160700+006h00m.grib2 result_vire.grib2
 
 if [ $? -ne 0 ];then
   echo cloud consensus/vire failed on CPU
@@ -17,4 +21,4 @@ fi
 
 echo cloud_consensus/vire success on CPU
 rm -f fc*.grib2
-
+rm -f cloud_consensus_vire_source.grib
