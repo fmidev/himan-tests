@@ -1,22 +1,26 @@
 {
-        "source_geom_name" : "SMARTMETSMALL7500,ECEUR0100,ECGLO0100",
-        "target_geom_name" : "SMARTMETSMALL7500",
-        "source_producer" : "181,280",
-        "target_producer" : "280",
-        "start_hour" : "16",
-        "stop_hour" : "16",
-        "step" : "1",
-        "file_write" : "multiple",
-        "origintime" : "2023-05-22 13:00:00",
-	"read_data_from_database" : false,
-
-        "processqueue" : [
+  "source_geom_name": "SMARTMET2500,SMARTMET11000",
+  "target_geom_name": "SMARTMET2500",
+  "source_producer": "285,286",
+  "target_producer": "126",
+  "write_mode": "single",
+  "write_to_database": false,
+  "read_from_database": false,
+  "origintime": "2025-05-20 01:00:00",
+  "processqueue": [
+    {
+      "leveltype": "height",
+      "levels": "0",
+      "plugins": [
         {
-                "leveltype" : "height",
-                "levels" : "2",
-                "plugins" : [
-                        { "name" : "frost" }
-                        ]
+          "name": "frost"
         }
-        ]
+      ]
+    }
+  ],
+  "start_hour": "15",
+  "stop_hour": "15",
+  "step": "1",
+  "forecast_type": "deterministic"
 }
+
