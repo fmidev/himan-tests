@@ -1,13 +1,13 @@
 {
-	"source_geom_name" : "SMARTMETSMALL7500",
-	"target_geom_name" : "SMARTMETSMALL7500",
-	"source_producer" : "181",
-	"target_producer" : "280",
+	"source_geom_name" : "SMARTMET2500",
+	"target_geom_name" : "SMARTMET2500",
+	"source_producer": "288",
+	"target_producer": "288",
 	"start_hour" : "44",
 	"stop_hour" : "44",
 	"step" : "3",
 	"file_write" : "multiple",
-	"origintime" : "2021-09-30 07:00:00",
+	"origintime" : "2025-05-20 01:00:00",
 	"read_data_from_database" : false,
 	"file_type" : "grib2",
 	"processqueue" : [
