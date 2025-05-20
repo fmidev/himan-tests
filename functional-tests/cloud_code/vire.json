@@ -3,10 +3,10 @@
     "target_geom_name" : "SMARTMET2500",
     "source_producer" : "287",
     "target_producer" : "287",
-    "origintime": "2025-05-16 07:00:00",
+    "origintime": "2025-05-20 07:00:00",
     "file_type": "grib2",
-    "start_hour": "6",
-    "stop_hour": "6",
+    "start_hour": "8",
+    "stop_hour": "8",
     "step": "1",
     "read_data_from_database": false,
     "write_data_to_database": false,
@@ -19,7 +19,7 @@
             "name" : "luatool",
             "luafile" : [ "$HIMAN_SCRIPTS/cloud-consensus.lua"],
             "disable_meps": "false",
-            "origin_time_test": "2025-05-16 00:00:00"
+            "origin_time_test": "2025-05-20 00:00:00"
         } ]
     }
     ]
