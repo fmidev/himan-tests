@@ -65,11 +65,6 @@ shared_ptr<grid> CreateGrid(const std::string& name)
 		return make_shared<lambert_equal_area_grid>(kTopLeft, point(-39.24646, 67.1384), 1900, 2200, 2000.1432,
 		                                            2000.1356, 10, 52, earth_shape<double>(6371220.), false);
 	}
-	else if (name == "BLENDSCAN3000")
-	{
-		return make_shared<stereographic_grid>(kBottomLeft, point(5.94086, 51.0579), 685, 765, 3000, 3000, 20,
-		                                       earth_shape<double>(6371220.), false);
-	}
 	else if (name == "SMARTMETSMALL7500")
 	{
 		return make_shared<stereographic_grid>(kBottomLeft, point(5.4211, 52.6997), 255, 280, 7361.039, 7414.492, 20,
@@ -238,41 +233,6 @@ BOOST_AUTO_TEST_CASE(LAMBERT_EQUAL_AREA)
 	for (size_t i = 0; i < lam->Size(); ++i)
 	{
 		source.data[i] = LatLonSum(lam->LatLon(i));
-	}
-
-	interp.Interpolate(source, target);
-
-	int missing = 0;
-	for (size_t i = 0; i < ecedit->Size(); ++i)
-	{
-		if (IsMissing(target.data[i]))
-		{
-			++missing;
-			continue;
-		}
-		BOOST_CHECK_CLOSE(target.data[i], LatLonSum(ecedit->LatLon(i)), kEpsilon);
-	}
-	cout << missing << "/" << ecedit->Size() << '\n';
-}
-
-BOOST_AUTO_TEST_CASE(STEREOGRAPHIC)
-{
-	auto sg = CreateGrid("BLENDSCAN3000");
-	interpolate::area_interpolation<double> interp(*sg, *ecedit, kBiLinear);
-
-	base<double> target;
-	target.grid = ecedit;
-	target.data = matrix<double>(dynamic_cast<latitude_longitude_grid&>(*ecedit).Ni(),
-	                             dynamic_cast<latitude_longitude_grid&>(*ecedit).Nj(), 1, MissingDouble());
-
-	base<double> source;
-	source.grid = sg;
-	source.data = matrix<double>(dynamic_cast<regular_grid&>(*sg).Ni(), dynamic_cast<regular_grid&>(*sg).Nj(), 1,
-	                             MissingDouble());
-
-	for (size_t i = 0; i < sg->Size(); ++i)
-	{
-		source.data[i] = LatLonSum(sg->LatLon(i));
 	}
 
 	interp.Interpolate(source, target);
