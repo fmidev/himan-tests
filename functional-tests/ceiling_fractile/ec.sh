@@ -5,7 +5,7 @@ if [ -z "$HIMAN" ]; then
 	export HIMAN="../../himan-bin/himan"
 fi
 
-rm -f *m.grib
+rm -f fc*m.grib2
 
 $HIMAN -d 4 -f ec.json source_ec.grib -s stat --no-cuda
 
@@ -17,5 +17,5 @@ if [ $? -ne 0 ];then
 fi
 
 echo ceiling fractile/ec success on CPU
-rm -f *m.grib2
+rm -f fc*m.grib2
 
