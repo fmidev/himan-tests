@@ -10,7 +10,7 @@ source_data=cloud_consensus_vire_source.grib
 ../../bin/download-if-not-exists.sh $source_data
 
 
-$HIMAN -d 4 -f vire.json $source_data -s stat --no-cuda
+$HIMAN -d 4 -j 1 -f vire.json $source_data -s stat --no-cuda
 
 grib_compare fc202505200700+008h00m.grib2 result_vire.grib2
 
