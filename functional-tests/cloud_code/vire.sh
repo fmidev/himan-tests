@@ -4,7 +4,7 @@ if [ -z "$HIMAN" ]; then
 	export HIMAN="../../himan-bin/himan"
 fi
 
-rm -f fc*.grib
+rm -f fc*.grib2
 
 source_data=cloud_consensus_vire_source.grib
 ../../bin/download-if-not-exists.sh $source_data
