@@ -8,7 +8,7 @@ rm -f fc*.grib
 
 $HIMAN -d 4 -f vire.json source_vire.grib -s stat --no-cuda
 
-grib_compare fc202506160100+021h00m.grib result_vire.grib2
+grib_compare fc202601140700+021h00m.grib2 result_vire.grib2
 
 if [ $? -ne 0 ];then
   echo precipitation-form/vire failed on CPU
@@ -16,4 +16,4 @@ if [ $? -ne 0 ];then
 fi
 
 echo precipitation-form/vire success on CPU
-rm -f fc*.grib
+rm -f fc*.grib2
