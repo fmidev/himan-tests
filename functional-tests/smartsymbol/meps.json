@@ -1,0 +1,28 @@
+{
+  "target_geom_name": "MEPS2500D",
+  "source_geom_name": "MEPS2500D",
+  "source_producer": "4,260",
+  "target_producer": "260",
+  "start_hour": "1",
+  "stop_hour": "1",
+  "step": "1",
+  "origintime": "2026-05-06 03:00:00",
+  "write_to_database": false,
+  "read_from_database": false,
+  "write_mode": "all",
+  "forecast_type": "cf",
+  "processqueue": [
+    {
+      "leveltype": "height",
+      "levels": "0",
+      "plugins": [
+        {
+          "name": "luatool",
+          "luafile": [
+            "$HIMAN_SCRIPTS/smartsymbol.lua"
+          ]
+        }
+      ]
+    }
+  ]
+}
