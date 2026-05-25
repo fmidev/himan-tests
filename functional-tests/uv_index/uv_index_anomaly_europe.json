@@ -1,0 +1,20 @@
+{
+	"source_geom_name" : "ECGLO0100",
+	"target_geom_name" : "MT1450820500",
+	"source_producer" : "131",
+	"target_producer" : "240",
+	"hours" : "24",
+	"file_write" : "single",
+	"origintime" : "2026-05-21 00:00:00",
+	"read_data_from_database" : false,
+	"processqueue" : [
+	{
+		"leveltype" : "height",
+		"levels" : "0",
+		"plugins" : [ { "name" : "uv_index",
+				"mode" : "anomaly",
+				"o3_climatology" : "O3clim.grib"
+		} ]
+	}
+	]
+}

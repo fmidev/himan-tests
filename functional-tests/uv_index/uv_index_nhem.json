@@ -1,0 +1,24 @@
+{
+	"source_geom_name" : "ECGLO0100",
+	"target_geom_name" : "MTNOR1000",
+	"source_producer" : "131",
+	"target_producer" : "240",
+	"hours" : "12",
+	"file_write" : "multiple",
+	"origintime" : "2026-05-21 00:00:00",
+	"read_data_from_database" : false,
+	"processqueue" : [
+	{
+		"leveltype" : "height",
+		"levels" : "0",
+		"plugins" : [ { "name" : "uv_index",
+				"mode" : "uv",
+				"disort_table" : "disort_24012003.dat",
+				"atau_summer" : "atau_summer_north.grib",
+				"atau_winter" : "atau_winter_north.grib",
+				"assa_summer" : "assa_summer_north.grib",
+				"assa_winter" : "assa_winter_north.grib"
+		} ]
+	}
+	]
+}
