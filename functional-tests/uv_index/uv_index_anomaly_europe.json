@@ -12,7 +12,7 @@
 		"leveltype" : "height",
 		"levels" : "0",
 		"plugins" : [ { "name" : "uv_index",
-				"mode" : "anomaly",
+				"mode" : "o3anom",
 				"o3_climatology" : "O3clim.grib"
 		} ]
 	}
