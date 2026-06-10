@@ -9,7 +9,7 @@ rm -f *m.grib
 
 $HIMAN -d 4 -f vire.json source.grib -s stat --no-cuda
 
-grib_compare fc202606080700+015h00m.grib result.grib
+grib_compare fc202606100700+015h00m.grib result.grib
 
 if [ $? -ne 0 ];then
   echo precipiation-limit-values.lua failed on CPU
