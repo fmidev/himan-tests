@@ -19,7 +19,7 @@
         {
           "name": "luatool",
           "luafile": [
-            "/home/users/lihtamoa/himan/himan-scripts/daylight.lua"
+            "$HIMAN_SCRIPTS/daylight.lua"
           ]
         }
       ]

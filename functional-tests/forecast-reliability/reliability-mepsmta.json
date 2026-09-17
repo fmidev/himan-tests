@@ -19,7 +19,7 @@
         {
           "name": "luatool",
           "luafile": [
-            "/home/users/lihtamoa/himan/himan-scripts/forecast-reliability.lua"
+            "$HIMAN_SCRIPTS/forecast-reliability.lua"
           ]
         }
       ]
