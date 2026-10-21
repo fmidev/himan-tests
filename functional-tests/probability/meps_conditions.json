@@ -1,0 +1,33 @@
+{
+    "target_geom_name" : "MEPSSCAN2500",
+    "source_producer" : "260",
+    "target_producer" : "260",
+    "start_hour" : "48",
+    "stop_hour" : "48",
+    "step" : "1",
+    "origintime" : "2017-11-24 06:00:00",
+    "read_data_from_database" : "true",
+    "file_write" : "multiple",
+    "processqueue" : [
+        {
+            "leveltype" : "height",
+            "levels" : "0",
+            "plugins" : [ { "name" : "probability",
+                            "normalized_results" : false,
+                            "max_missing_forecasts" : "6",
+                            "param_list" :  [
+					{ "name" : "PROB-RR1-1", "input_param" : "RRR-KGM2", "threshold" : "0.04", "comparison" : ">",
+					  "conditions" : [ { "input_param" : "PRECFORM2-N", "comparison" : "=", "value" : "1" } ] },
+					{ "name" : "PROB-RR-4", "input_param" : "PRECFORM2-N", "threshold" : "1", "comparison" : "=",
+					  "conditions" : [ { "input_param" : "RRR-KGM2", "comparison" : ">", "value" : "0.04" } ] },
+					{ "name" : "PROB-RR-7", "input_param" : "RRR-KGM2", "threshold" : "0.04", "comparison" : ">" },
+					{ "name" : "PROB-RR3-6", "input_param" : "RRR-KGM2", "threshold" : "0.04", "comparison" : ">",
+					  "conditions" : [] },
+					{ "name" : "PROB-FRRAIN", "input_param" : "RRR-KGM2", "threshold" : "0.04", "comparison" : ">",
+					  "conditions" : [ { "input_param" : "PRECFORM2-N", "comparison" : "=[]", "value" : "4,5" } ] }
+					]
+				  }
+			]
+		}
+	]
+}
