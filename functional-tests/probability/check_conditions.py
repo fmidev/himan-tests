@@ -75,7 +75,7 @@ def main():
             print("{}: expected exactly one output file, got {}".format(name, files))
             failed = True
             continue
-        got = list(read_flat(files[0]))
+        got = read_flat(files[0])
         exp = expected(data, rules)
         if not np.allclose(got, exp, atol=1e-5, equal_nan=True):
             idx = np.where(~np.isclose(got, exp, atol=1e-5, equal_nan=True))[0][:10]
