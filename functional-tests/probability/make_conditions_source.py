@@ -3,7 +3,11 @@
 Generates meps_conditions_source.grib: synthetic 10-member MEPS-like ensemble containing
 PRECFORM2-N (ptype) and RRR-KGM2 (total precipitation rate). Each of the first grid points is
 built to exercise one rule of the probability plugin 'conditions' array. All other grid points have
-ptype=0 and rrr=0 in every member.
+no precipitation form (missing value) and rrr=0 in every member.
+
+Precipitation form values in CASES are himan values (0 drizzle, 1 rain, 2 sleet, 3 snow, 4 freezing
+drizzle, 5 freezing rain). Himan decodes PRECFORM2-N from grib2 using the WMO code table 4.201, so the
+values are written to the file using the WMO codes.
 
 Grid, time and ensemble metadata are copied from meps_preform_source.grib so that the same
 database definitions (producer 260, MEPSSCAN2500) apply.
@@ -18,6 +22,9 @@ TEMPLATE = "meps_preform_source.grib"
 OUTPUT = "meps_conditions_source.grib"
 NMEMBERS = 10
 MISSING = np.nan
+
+# himan precipitation form -> WMO code table 4.201 (grib2)
+HIMAN_TO_WMO = {0: 11, 1: 1, 2: 7, 3: 5, 4: 12, 5: 3}
 
 # Per test point: (ptype values for the 10 members, rrr values for the 10 members)
 # Use None for a missing value.
@@ -86,7 +93,11 @@ def main():
             h = ec.codes_clone(t)
             ec.codes_set(h, "bitmapPresent", 1)
             ec.codes_set(h, "missingValue", 9999.0)
-            v = fill(ptype_cases, m, ncases, ngrid, 0.0)
+            # Points outside of the test points: no precipitation, ie. missing value
+            v = fill(ptype_cases, m, ncases, ngrid, MISSING)
+            for i in range(ncases):
+                if not np.isnan(v[i]):
+                    v[i] = HIMAN_TO_WMO[int(v[i])]
             v[np.isnan(v)] = 9999.0
             ec.codes_set(h, "packingType", "grid_ccsds")
             ec.codes_set(h, "bitsPerValue", 8)

@@ -13,6 +13,14 @@ import numpy as np
 import eccodes as ec
 
 ALLOW_MISSING = {"PRECFORM2-N"}
+
+# Output parameters are packed with a parameter specific precision in radon (10 bits for some),
+# so the tolerance must allow for that: 1 / 2^10 is about 0.001
+TOLERANCE = 0.005
+
+# Precipitation form in grib2 is encoded with WMO code table 4.201, himan uses different values.
+# Codes that himan does not support are treated as missing.
+WMO_TO_HIMAN = {1: 1, 11: 0, 7: 2, 5: 3, 6: 3, 12: 4, 3: 5, 9: 6, 13: 7, 8: 8}
 PARAMS = {19: "PRECFORM2-N", 52: "RRR-KGM2"}
 
 ops = {
@@ -45,6 +53,9 @@ def read(fname):
             name = PARAMS[ec.codes_get(h, "parameterNumber")]
             v = ec.codes_get_values(h).astype(np.float32)
             v[v == 9999.0] = np.nan
+            if name == "PRECFORM2-N":
+                v = np.array([WMO_TO_HIMAN.get(int(x), np.nan) if not np.isnan(x) else np.nan for x in v],
+                             dtype=np.float32)
             data.setdefault(name, []).append(v)
             ec.codes_release(h)
     return {k: np.array(v) for k, v in data.items()}
@@ -77,8 +88,8 @@ def main():
             continue
         got = read_flat(files[0])
         exp = expected(data, rules)
-        if not np.allclose(got, exp, atol=1e-5, equal_nan=True):
-            idx = np.where(~np.isclose(got, exp, atol=1e-5, equal_nan=True))[0][:10]
+        if not np.allclose(got, exp, atol=TOLERANCE, equal_nan=True):
+            idx = np.where(~np.isclose(got, exp, atol=TOLERANCE, equal_nan=True))[0][:10]
             print("{}: mismatch at points {}: got {} expected {}".format(name, idx, got[idx], exp[idx]))
             failed = True
         else:
