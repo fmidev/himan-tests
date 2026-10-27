@@ -19,7 +19,7 @@
         {
           "name": "luatool",
           "luafile": [
-            "/home/kuvaja/himan/himan-scripts/inversion.lua"
+            "$HIMAN_SCRIPTS/inversion.lua"
           ]
         }
       ]
