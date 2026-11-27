@@ -5,7 +5,7 @@ if [ -z "$HIMAN" ]; then
 	export HIMAN="../../himan-bin/himan"
 fi
 
-rm -f *m.grib
+rm -f *m.grib2
 
 source_data=ceiling_fractile_meps_source.grib
 ../../bin/download-if-not-exists.sh $source_data
